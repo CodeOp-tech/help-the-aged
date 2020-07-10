@@ -37,5 +37,3 @@ mySQL
 Datagrid
 
 ## Set up
-
-HEY IT IS ANITA
