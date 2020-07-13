@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Mymap from './components/mymap'
+import Signup from './components/signup'
 import './App.css';
 
 export default class App extends Component {
@@ -7,6 +8,8 @@ export default class App extends Component {
     return (
       <div>
         <h1> Help The Aged </h1>
+        
+        <Signup />
         <Mymap />
 
         <p className="copyrights">@ 2020. Help The Aged. Created by Anita Noemi Szabo and Albane Chepeau.</p>  
