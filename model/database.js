@@ -20,7 +20,7 @@ con.connect(function(err) {
 
 // ACTIVITY TABLE
   let sql = 
-  "DROP TABLE if exists activity; CREATE TABLE activty (id INT NOT NULL AUTO_INCREMENT, activity_name text not null, image text null, PRIMARY KEY (id));";
+  "DROP TABLE if exists activity; CREATE TABLE activity (activity_name text not null, id INT NOT NULL AUTO_INCREMENT, image text null, PRIMARY KEY (id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `items` was successful!");
@@ -38,77 +38,81 @@ con.connect(function(err) {
 
 // ACTIVITY DUMMY DATA
   sql = 
-  "INSERT INTO helptheaged.activity (id, ) VALUES (1, );";
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Grocery Shopping', 1, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `items` was successful!");
 
   });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Go For A Walk', 2, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Become Pen Pals', 3, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Pharmacy Run', 4, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Have A Tea', 5, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Help With Tech', 6, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Phone Chat', 7, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+  sql = 
+  "INSERT INTO helptheaged.activity (activity_name, id, image) VALUES ('Read Books', 8, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
 
 // HELPER SIGN UP DUMMY DATA
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Grocery Shopping', 1, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
+sql = 
+"INSERT INTO helptheaged.helper_sign_up (id, name, surname, email, city, postcode, activity, about_me) VALUES (7, 'Albane', 'Chepeau', 'albanechepeau@gmail.com', 'London', 'SE155NZ', 'Grocery Shopping', 'Hi')";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log("Table creation `items` was successful!");
 
-  });
+});
 
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Go For A Walk', 2, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Become Pen Pals', 3, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Pharmacy Run', 4, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Have A Tea', 5, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Help With Tech', 6, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Phone Chat', 7, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
-
-  sql = 
-  "INSERT INTO helptheaged.helper_sign_up (activity_name, id, image) VALUES ('Read Books', 8, 'https://www.griswoldhomecare.com/wp-content/uploads/2019/11/bigstock-Man-Sitting-On-Sofa-And-Readin-302783236.jpg')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
-  });
 
   con.end();
 });
+
+
