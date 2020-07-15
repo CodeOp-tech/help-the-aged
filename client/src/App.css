@@ -9,6 +9,11 @@
   background-color: #2c432d;
 }
 
+.MapHomepage{
+  /* display: flex; */
+
+}
+
 .App__Form {
   width: 45%;
   background-color: #f1eeee;
