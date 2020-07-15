@@ -1,7 +1,28 @@
 import React, { Component } from 'react'
 import Mymap from './components/mymap'
 import Signup from './components/signup'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import './App.css';
+
+
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+    slidesToSlide: 2 // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+};
 
 export default class App extends Component {
   render() {
@@ -10,7 +31,35 @@ export default class App extends Component {
         <div className="App">
             <div className="App__Aside">
                 <h1>Helping Hands</h1>
-                <img classname="MapHomepage" src="https://www.google.com/maps/d/thumbnail?mid=1jzQ0F21u1PJI_8BqWOAaSkFLHSM"/>
+
+<Carousel
+  swipeable={false}
+  draggable={false}
+  showDots={false}
+  responsive={responsive}
+  ssr={true} // means to render carousel on server-side.
+  infinite={true}
+  autoPlay={this.props.deviceType !== "mobile" ? true : false}
+  autoPlaySpeed={1000}
+  keyBoardControl={true}
+  customTransition="all .5"
+  transitionDuration={500}
+  containerClass="carousel-container"
+  removeArrowOnDeviceType={["tablet", "mobile"]}
+  deviceType={this.props.deviceType}
+  dotListClass="custom-dot-list-style"
+  itemClass="carousel-item-padding-40-px"
+>
+  <div><img src="https://www.wowamazing.com/wp-content/uploads/2015/11/young-man-elderly-woman-visiting-1080937-print.jpg" height="200" width="240"></img></div>
+  <div><img src="https://www.ligo.co.uk/wordpress/wp-content/uploads/2013/03/old-people.jpg" height="200" width="240"></img></div>
+  <div><img src="https://2o3dku1y6qqx2cmhkyvli8ok-wpengine.netdna-ssl.com/wp-content/uploads/sites/5/2018/12/MLTCN_page31_Feature01_1218-1280x720.jpg" height="200" width="240"></img></div>
+  <div><img src="https://www.ligo.co.uk/wordpress/wp-content/uploads/2013/03/old-people.jpg" height="200" width="240"></img></div>
+  <br/> <br/>
+</Carousel>
+
+
+
+
             </div>
 
             <div className="App__Form">
