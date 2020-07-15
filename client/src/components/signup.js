@@ -10,7 +10,9 @@ export default class Signup extends Component {
     render() {
         return (
         <div className="App">
-            <div className="App__Aside"></div>
+            <div className="App__Aside">
+                <h1>Helping Hands</h1>
+            </div>
             <div className="App__Form">
                 <div className="PageSwitcher">
                     <a href="#" className="PageSwitcher__Item">Sign In</a>
