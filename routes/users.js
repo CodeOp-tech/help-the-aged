@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const db = require("../model/helper");  //TO CONNECT TO DB
+
 
 function getHelpers (req, res) {
 db("SELECT * FROM helper_sign_up ORDER BY id ASC;")
@@ -18,32 +20,64 @@ router.get('/', function(req, res, next) {
 
 //FOR THE ACTIVITY LIST
 router.get("/activity", function (req, res, next) {
+  console.log("hellodata");
   db ("SELECT * FROM activity;")
     .then(results => {
+      console.log(results);  //is a variable, no quotation
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
 
-//MEMBERS OFFERING CERTAIN ACTIVITIES   ---IS THIS OK??? (filter??) ---GOOD FOR POSTCODE TOO?
-router.get("/filter/:ids/:activity_id", function (req, res, next) {
-  db (`SELECT * FROM activity WHERE helper_sign_up_id IN (${req.params.ids}) AND activity_id IN (${req.params.activity_id});`)
+//FOR THE HELPER_SIGN_UP
+router.get("/helper_sign_up", function (req, res, next) {
+  db ("SELECT * FROM helper_sign_up;")
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
 
-//FOR THE REGISGRATION FORM (NO ID AS IT IS AUTO INC)
+//FIND MEMBERS BASED ON ACTIVITIES 
+router.get("/filter/:activity_id", function (req, res, next) {
+  db (`SELECT helper_sign_up.name, helper_sign_up.city, helper_sign_up.postcode, activity.activity_name FROM helper_activity inner join helper_sign_up on helper_activity.helper_sign_up_id=helper_sign_up.id inner join activity on helper_activity.activity_id=activity.id WHERE helper_activity.activity_id='${req.params.activity_id}';`)
+      .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+
+//FIND MEMBERS BASED ON POSTCODE     
+router.get("/filtertwo/helper_sign_up/:postcode", function (req, res, next) {
+  db (`SELECT helper_sign_up.name, helper_sign_up.surname, helper_sign_up.postcode, helper_sign_up.email, helper_sign_up.about_me, helper_sign_up.city, activity.activity_name FROM helper_activity inner join helper_sign_up on helper_activity.helper_sign_up_id=helper_sign_up.id inner join activity on helper_activity.activity_id=activity.id WHERE helper_sign_up.postcode='${req.params.postcode}';`)
+      .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+
+//FILL REGISTRATION FORM AND INTERCONNECTING TABLE
 router.post("/", function(req, res) {
-  db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('${req.body.name}', ${req.body.surname}, '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.activity}', '${req.body.about_me}');`)
+  db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
     .then(result => {
       if(result.error) {
         res.status(404).send({error: result.error});
       } else {
-        getHelpers(req, res)
+        getHelpers(req, res)   
+
       }
-    })
+    })     
+    // db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) FROM helper_activity inner join helper_sign_up on helper_activity.helper_sign_up_id=helper_sign_up.id inner join activity on helper_activity.activity_id=activity.id WHERE helper_activity.activity_id='${req.params.activity_id}' VALUES ('${req.body.helper_sign_up_id}', ${req.body.activity_id});`)
+    // .then(result => {
+    //   if(result.error) {
+    //     res.status(404).send({error: result.error});
+    //   } else {
+    //     getHelpers(req, res)   
+        
+    //   }
+    // })
     .catch(err => res.status(500).send(err));
 });
 
