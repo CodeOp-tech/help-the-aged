@@ -63,18 +63,17 @@ function insertActivities(id, Arr, res){
   // For each activity on the list, we need to do an insert in the intermediate table, connecting user_id and activity_id
   for (let i = 0; i < Arr.length; i++) {
 
-    console.log (`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${id}', '${Arr[i]}');`);
-    db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${id}', '${Arr[i]}');`)
+  db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${id}', '${Arr[i]}');`)
   
    .then(result => {
      if(result.error) {
        res.status(404).send({error: result.error});
-     } else{
-        res.send("Query worked");
-     }
-  })
+        } else{
+         res.send("Query worked");
+        }
+    })
   .catch(err => res.status(500).send(err));
-  }
+ }
 }
 
   
@@ -84,27 +83,21 @@ db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) 
 .then(result => {
 if(result.error) {
  res.status(404).send({error: result.error});
-} else {
+  } else {
 
   db('SELECT ID FROM helper_sign_up ORDER BY ID DESC LIMIT 1;')  //WE GET THE USER ID
     .then(answer => {
-    if(answer.error) {
+     if(answer.error) {
       res.status(404).send({error: answer.error}); 
-    } else{
-      return insertActivities(answer.data[0].ID, req.body.activities, res);
-    }
+       }else{
+         return insertActivities(answer.data[0].ID, req.body.activities, res);
+       }
     })
     .catch(err => res.status(500).send(err));
-  }
- })
+   }
+  })
  .catch(err => res.status(500).send(err));
-
-     //TODO: retriev the ID of the suer we just inserted
-    //     res.send(answer.data); 
 });
-
-
-
 
 
 //TO DELETE HELPER PROFILE
