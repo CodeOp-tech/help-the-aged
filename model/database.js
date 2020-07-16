@@ -37,11 +37,19 @@ con.connect(function(err) {
   });
 
   // CONNECTING TABLE
+<<<<<<< HEAD
+  sql = 
+  "DROP TABLE if exists helper_activity; CREATE TABLE helper_activity (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), FOREIGN KEY (helper_sign_up_id) references helper_sign_up(id), FOREIGN KEY (activity_id) references activity(id));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+=======
   // sql = 
   // "DROP TABLE if exists helper_activity; CREATE TABLE helper_activity (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), FOREIGN KEY (helper_sign_up_id) references helper_sign_up(id), FOREIGN KEY (activity_id) references activity(id));";
   // con.query(sql, function (err, result) {
   //   if (err) throw err;
   //   console.log("Table creation `items` was successful!");
+>>>>>>> upstream/master
 
   // });
 
