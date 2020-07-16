@@ -18,8 +18,16 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-// ACTIVITY TABLE
   let sql = 
+  "set foreign_key_checks = 0;";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
+
+  });
+
+// ACTIVITY TABLE
+  sql = 
   "DROP TABLE if exists activity; CREATE TABLE activity (id INT NOT NULL AUTO_INCREMENT, activity_name text not null, image text null, PRIMARY KEY (id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
@@ -37,13 +45,13 @@ con.connect(function(err) {
   });
 
   // CONNECTING TABLE
-  // sql = 
-  // "DROP TABLE if exists helper_activity; CREATE TABLE helper_activity (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), FOREIGN KEY (helper_sign_up_id) references helper_sign_up(id), FOREIGN KEY (activity_id) references activity(id));";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Table creation `items` was successful!");
+  sql = 
+  "DROP TABLE if exists helper_activity; CREATE TABLE helper_activity (id INT NOT NULL AUTO_INCREMENT, helper_sign_up_id INT, activity_id INT, PRIMARY KEY (id), FOREIGN KEY (helper_sign_up_id) references helper_sign_up(id), FOREIGN KEY (activity_id) references activity(id));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `items` was successful!");
 
-  // });
+  });
 
 // ACTIVITY DUMMY DATA
   sql = 
@@ -113,7 +121,7 @@ con.connect(function(err) {
 
 // HELPER SIGN UP DUMMY DATA
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (id, name, surname, email, city, postcode, activity, about_me) VALUES (1, 'Albane', 'Chepeau', 'albanechepeau@gmail.com', 'London', 'SE155NZ', 'Grocery Shopping', 'Hi, I am happy to do grocery shopping for you.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Albane', 'Chepeau', 'albanechepeau@gmail.com', 'London', 'SE155NZ', 'Grocery Shopping', 'Hi, I am happy to do grocery shopping for you.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
@@ -121,28 +129,41 @@ con.query(sql, function (err, result) {
 
 
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (id, name, surname, email, city, postcode, activity, about_me) VALUES (2, 'Anita', 'Szabo', 'szaboanitanoemi@hotmail.com', 'London', 'E61PU', 'Go For A Walk', 'Hi, I am happy to walk together with you.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Anita', 'Szabo', 'szaboanitanoemi@hotmail.com', 'London', 'E61PU', 'Go For A Walk', 'Hi, I am happy to walk together with you.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
 });
 
-// HELPER_ACTIVITY SIGN UP DUMMY DATA
-// sql = 
-// "INSERT INTO helptheaged.helper_activity (id, helper_sign_up_id, activity_id) VALUES ('1, 1, 1')";
-// con.query(sql, function (err, result) {
-//   if (err) throw err;
-//   console.log("Table creation `items` was successful!");
-// });
+//HELPER_ACTIVITY SIGN UP DUMMY DATA
+sql = 
+"INSERT INTO helptheaged.helper_activity (helper_sign_up_id, activity_id) VALUES (1, 1)";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log("Table creation `items` was successful!");
+});
 
-// sql = 
-// "INSERT INTO helptheaged.helper_activity (id, helper_sign_up_id, activity_id) VALUES ('2,2,2')";
-// con.query(sql, function (err, result) {
-//   if (err) throw err;
-//   console.log("Table creation `items` was successful!");
-// });
+sql = 
+"INSERT INTO helptheaged.helper_activity (helper_sign_up_id, activity_id) VALUES (2, 2)";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log("Table creation `items` was successful!");
+});
+
+
+sql = 
+"set foreign_key_checks = 1;";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log("Table creation `items` was successful!");
+
+});
+
 
   con.end();
 });
+
+
+
 
 
