@@ -4,14 +4,37 @@
   color: white;
 }
 
+.hhlogo{
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
 .App__Aside {
   width: 55%;
   background-color: #2c432d;
 }
 
+.BrowseMap{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.BrowseMap__Item{
+  background-color: #4C5D72;
+  color: #9DA6B1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: .8em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
 .App__Form {
   width: 45%;
-  background-color: #f1eeee;
+  background-color: #ffede2;
   padding: 25px 40px;
   overflow: auto;
 }
