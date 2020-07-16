@@ -1,0 +1,11 @@
+.NiceMap {
+    display:flex;
+    padding-left: 20px;
+    }
+    
+    .leaflet-container{
+    display: flex;
+    Width: 45%;
+    height: 45vh;
+    justify-items: left;
+    }
