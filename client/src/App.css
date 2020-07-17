@@ -127,6 +127,17 @@
   color: #616E7F;
 }
 
+.Act__Checkboxes{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2em;
+}
+
+.Act__Label{
+  color: #2c432d;
+  font-size: 13px;
+}
+
 .FormField__Button {
   background-color: #2c432d;
   color: white;

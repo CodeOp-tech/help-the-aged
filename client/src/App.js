@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Signin from './components/signin'
 import Mymap from './components/mymap'
-// import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import './App.css';
 
 export default class App extends Component {
@@ -9,6 +9,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+
         <Signin />
         
         <Mymap />
