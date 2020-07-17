@@ -1,25 +1,10 @@
 import React, { Component } from 'react'
 import Signin from './components/signin'
 import Mymap from './components/mymap'
-import Logo from './hhlogoreviewbold.png'
+// import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import './App.css';
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name:"",
-            surname:"",
-            email:"",
-            password:"",
-            postcode:"",
-            activity:"",
-            aboutme:""
-        };
-      }
-
-  //handleSubmit
-
 
   render() {
     return (
