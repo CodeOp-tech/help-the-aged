@@ -23,8 +23,6 @@ export default class Signin extends Component {
                 <div className="App">
             <div className="App__Aside">
                 <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
-                <h1>HELPING HANDS</h1>
-
                 <button className="BrowseMap" name="BrowseMap__Item">Find Help</button>
             </div>
 
