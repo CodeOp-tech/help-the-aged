@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Logo from '../hhlogoreviewbold.png'
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 export default class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name:"",
-            surname:"",
+            // surname:"",
             email:"",
             password:"",
             postcode:"",
@@ -15,7 +16,8 @@ export default class Signin extends Component {
         };
       }
 
-  //handleSubmit
+  
+      //handleSubmit
 
     render() {
         return (
@@ -48,18 +50,57 @@ export default class Signin extends Component {
                             <label className="FormField__Label" htmlFor="email">Email</label>
                             <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email"/>
                         </div>
-                        <div className="FormField">
+                        {/* <div className="FormField">
                             <label className="FormField__Label" htmlFor="password">Password</label>
                             <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password"/>
-                        </div>
+                        </div> */}
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="postcode">Postcode</label>
                             <input type="postcode" id="postcode" className="FormField__Input" placeholder="Enter your postcode" name="postcode"/>
                         </div>
                         <div className="FormField">
-                            <label className="FormField__Label" htmlFor="activity">Activity</label>
-                            <input type="activity" id="activity" className="FormField__Input" placeholder="NEED TO MAKE THESE AS TICKBOXES" name="activity"/>
+                            <label className="FormField__Label" htmlFor="activity">What i can help with:</label>
+                        <br/>
+                        <div className="Act__Checkboxes">
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Grocery Shopping</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Go For A Walk</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Weekly Phone Call</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Pharmacy Run</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Help With Tech</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Writing Letters</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Gardening</label>
+                            </div>
+                            <div>
+                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <label className="Act__Label">Walk Your Pet</label>
+                            </div>
                         </div>
+                        </div>
+                        <br/>
+
+
+
+
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="aboutme">About me</label>
                             <textarea type="aboutme" id="aboutme" className="FormField__Input" placeholder="Tell us about you" name="aboutme"/>
