@@ -21,7 +21,7 @@ constructor(props) {
                 <div className="App__Aside">
                     <div className = "NiceMap">
                 <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom}>
-                <TileLayer url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png' 
+                <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ' 
                 attribution='<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'/>
                 <Marker position={[this.state.lat, this.state.lon]}>
                 <Popup>
