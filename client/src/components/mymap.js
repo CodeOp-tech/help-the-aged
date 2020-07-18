@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Map,TileLayer, Marker, Popup} from 'react-leaflet'
-import './mymap.css';
-import opencage from "opencage-api-client"; 
+import './mymap.css'
+import opencage from 'opencage-api-client'
 
 
 
@@ -25,7 +25,6 @@ componentDidMount() {
 }
 
 
-//to pass a placename
 getHelper = () => {
   fetch(`/users/helper_sign_up`)
     .then(response => response.json())
@@ -33,7 +32,7 @@ getHelper = () => {
       this.setState({helpers: response});
       for (let i=0; i<this.state.helpers.length; i++) {
         // console.log(this.state.helpers[i]);
-        const locData =`${this.state.helpers[i].postcode}, ${this.state.helpers[i].city}`;  //1st arg locData
+        const locData =`${this.state.helpers[i].postcode}, ${this.state.helpers[i].city}`;  
             // console.log(locData);
         this.addLocation(locData,this.state.helpers[i].name, this.state.helpers[i].surname, this.state.helpers[i].about_me);   //to add other things to appear 
       }
@@ -97,5 +96,12 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
         </div>
       </div>
     )
+
+
+
+
+
+
+    
   }
 }
