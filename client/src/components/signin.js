@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Logo from '../hhlogoreviewbold.png'
+// import Logo from '../hhlogoreviewbold.png'
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 
 export default class Signin extends Component {
     constructor(props) {
@@ -20,23 +21,18 @@ export default class Signin extends Component {
     render() {
         return (
             <div>
-                {/* <div className="App">
-            <div className="App__Aside">
-                <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
-                <button className="BrowseMap" name="BrowseMap__Item">Find Help</button>
-            </div>
-
+                
             <div className="App__Form">
-                <div className="PageSwitcher">
-                    <a href="#" className="PageSwitcher__Item">Sign In</a>
-                    <a href="#" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</a>
-                </div> */}
-{/* 
+
                 <div className="FormTitle">
-                    <a href="#" className="FormTitle__Link">Sign In</a>
-                    or
-                    <a href="#" className="FormTitle__Link FormTitle__Link--Active">Sign Up</a>
-                </div> */}
+                <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In
+                </NavLink>
+                or
+                <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up
+                </NavLink>
+                </div>
+                
+
 
                 <div className="FormCenter">
                     <form className="FormFields" onSubmit={this.handleSubmit}>
@@ -118,9 +114,9 @@ export default class Signin extends Component {
                     </form>
                 </div>
             </div>
-        // </div>
+        </div>
                 
-        //     </div>
+        // </div>
         )
     }
 }

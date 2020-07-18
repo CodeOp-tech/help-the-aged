@@ -10,13 +10,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <Router basename="Helping__Hands">
+      <Router basename="/">
         <div>
           <div className="App">
             <div className="App__Aside">
               <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
               <NavLink to="/map"><button className="Browse__Map">Find Helpers Near You</button></NavLink>
-              <Route path="/map" component={Mymap}></Route>
+              <Route className="Map__Page" path="/map" component={Mymap}></Route>
             </div>
           <div className="App__Form">
             {/* <div className="PageSwitcher">
@@ -24,9 +24,9 @@ export default class App extends Component {
                 <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
             </div> */}
 
-          <div className="FormTitle">
+          {/* <div className="FormTitle">
                 <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-          </div>
+          </div> */}
           
           <Route exact path="/" component={Signin}></Route>
           <Route path="/sign-in" component={Signup}></Route>
@@ -36,10 +36,10 @@ export default class App extends Component {
 
         <div className="Bottom__Section">
           <p className="copyrights">@ 2020. Help The Aged. Created by Anita Noemi Szabo and Albane Chepeau.</p>
-          <NavLink to="/">Home</NavLink>
+          {/* <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About Us</NavLink>
           <NavLink to="/termsandconditions">Terms And Conditions</NavLink>
-          <NavLink to="/privacy">Privacy</NavLink>
+          <NavLink to="/privacy">Privacy</NavLink> */}
         </div>  
       </div>
       </Router>
