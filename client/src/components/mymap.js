@@ -12,9 +12,9 @@ export default class Mymap extends Component {
 constructor(props) {
     super(props);
     this.state = {
-    lat:51.5285582, 
-    lon:-0.24168, 
-    zoom:8.5,
+    lat:51.528308, 
+    lon:-0.3817765, 
+    zoom:25,
     helpers: [],  
     markers: []
     }
@@ -73,12 +73,13 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
   render() {
     return (
       <div>
-        <div className ="App">
-          <div className="App__Aside">
+        {/* <div className ="App">
+          <div className="App__Aside"> */}
+            <p>Roger</p>
             <div className = "NiceMap">
               <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom} ref="map">
                 <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ' 
-                attribution='<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'/>
+                attribution='<a href="https://www.mapbox.com/about/maps/">Mapbox | </a> <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'/>
                 
                   {this.state.markers.map((marker, index) => //part of map prototype
                     <Marker key={index} position={marker.location}>
@@ -93,8 +94,8 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
               </Map>
             </div>
           </div>
-        </div>
-      </div>
+      //   </div>
+      // </div>
     )
 
 
