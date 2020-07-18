@@ -39,6 +39,28 @@
   overflow: auto;
 }
 
+.Browse__Map{
+  background-color: #2c432d;
+  color: white;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+  background-color: #ffede2;
+  color: #4C5D72;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: .8em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 .PageSwitcher {
   display: flex;
   justify-content: flex-end;
@@ -176,3 +198,8 @@
   margin-left: 5px;
 }
 
+.Bottom__Section{
+  display: inline-block;
+  font-size: 12px;
+  color: #646F7D;
+}
