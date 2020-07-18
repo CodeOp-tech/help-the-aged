@@ -1,28 +1,26 @@
 import React, { Component } from 'react'
 import Logo from '../hhlogoreviewbold.png'
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 export default class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name:"",
-            // surname:"",
             email:"",
-            password:"",
             postcode:"",
             activity:"",
-            aboutme:""
+            aboutme:"",
+            hasAgreed: false
         };
       }
 
   
-      //handleSubmit
+    handleSubmit
 
     render() {
         return (
             <div>
-                <div className="App">
+                {/* <div className="App">
             <div className="App__Aside">
                 <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
                 <button className="BrowseMap" name="BrowseMap__Item">Find Help</button>
@@ -32,13 +30,13 @@ export default class Signin extends Component {
                 <div className="PageSwitcher">
                     <a href="#" className="PageSwitcher__Item">Sign In</a>
                     <a href="#" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</a>
-                </div>
-
+                </div> */}
+{/* 
                 <div className="FormTitle">
                     <a href="#" className="FormTitle__Link">Sign In</a>
                     or
                     <a href="#" className="FormTitle__Link FormTitle__Link--Active">Sign Up</a>
-                </div>
+                </div> */}
 
                 <div className="FormCenter">
                     <form className="FormFields" onSubmit={this.handleSubmit}>
@@ -120,9 +118,9 @@ export default class Signin extends Component {
                     </form>
                 </div>
             </div>
-        </div>
+        // </div>
                 
-            </div>
+        //     </div>
         )
     }
 }

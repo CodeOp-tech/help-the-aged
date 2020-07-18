@@ -136,7 +136,7 @@ con.query(sql, function (err, result) {
 });
 
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Lord', 'Voldemort', 'voldemort@yahoo.co.uk', 'London', 'W127GF', 'Grocery Shopping','Pharmacy Run', 'Hi, I can do your grocery shopping or pharmacy run.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Lord', 'Voldemort', 'voldemort@yahoo.co.uk', 'London', 'W127GF', 'Grocery Shopping', 'Hi, I can do your grocery shopping or pharmacy run.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
@@ -158,7 +158,7 @@ con.query(sql, function (err, result) {
 });
 
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Severus', 'Snape', 's.snape@hotmail.com', 'London', 'N226YQ', 'Walk Your Pet', 'Help With Tech', 'Hi, I can help with your tech issues or walk your pet.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Severus', 'Snape', 's.snape@hotmail.com', 'London', 'N226YQ', 'Walk Your Pet', 'Hi, I can help with your tech issues or walk your pet.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
@@ -186,7 +186,7 @@ con.query(sql, function (err, result) {
 });
 
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Minerva', 'McGonagall', 'mcgonagall@yahoo.com', 'London', 'W53TJ', 'Hi, I am happy to do your grocery shopping or walk your pet.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Minerva', 'McGonagall', 'mcgonagall@yahoo.com', 'London', 'W53TJ', 'Help with tech', 'Hi, I am happy to do your grocery shopping or walk your pet.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
@@ -200,7 +200,7 @@ con.query(sql, function (err, result) {
 });
 
 sql = 
-"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Sirius', 'Black', 'sirius@gmail.com', 'London', 'BR11NY', 'Go For A Walk', 'Gardening', 'Hi, I can do your gardening or walk with you.')";
+"INSERT INTO helptheaged.helper_sign_up (name, surname, email, city, postcode, activity, about_me) VALUES ('Sirius', 'Black', 'sirius@gmail.com', 'London', 'BR11NY', 'Gardening', 'Hi, I can do your gardening or walk with you.')";
 con.query(sql, function (err, result) {
   if (err) throw err;
   console.log("Table creation `items` was successful!");
