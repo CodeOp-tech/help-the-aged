@@ -20,9 +20,9 @@ export default class Signin extends Component {
 
     render() {
         return (
-            <div>
+            // <div>
                 
-            <div className="App__Form">
+            // <div className="App__Form">
 
                 <div className="FormTitle">
                 <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In
@@ -30,7 +30,7 @@ export default class Signin extends Component {
                 or
                 <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up
                 </NavLink>
-                </div>
+                <br/><br/><br/>
                 
 
 
@@ -92,9 +92,6 @@ export default class Signin extends Component {
                         </div>
                         <br/>
 
-
-
-
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="aboutme">About me</label>
                             <textarea type="aboutme" id="aboutme" className="FormField__Input" placeholder="Tell us about you" name="aboutme"/>
@@ -114,8 +111,6 @@ export default class Signin extends Component {
                     </form>
                 </div>
             </div>
-        </div>
-                
         // </div>
         )
     }
