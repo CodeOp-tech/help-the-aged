@@ -74,8 +74,9 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
   render() {
     return (
       <div>
-        <div className ="App">
-          <div className="App__Aside">
+        {/* <div className ="App">
+          <div className="App__Aside"> */}
+            <p>Roger</p>
             <div className = "NiceMap">
               <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom} ref="map">
                 <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ' 
@@ -94,8 +95,8 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
               </Map>
             </div>
           </div>
-        </div>
-      </div>
+      //   </div>
+      // </div>
     )
   }
 }
