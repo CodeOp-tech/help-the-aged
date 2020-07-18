@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import {Map,TileLayer, Marker, Popup} from 'react-leaflet'
 import './mymap.css'
 import opencage from 'opencage-api-client'
-
-
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
+//const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default class Mymap extends Component {
 
@@ -73,9 +73,6 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
   render() {
     return (
       <div>
-        {/* <div className ="App">
-          <div className="App__Aside"> */}
-            <p>Roger</p>
             <div className = "NiceMap">
               <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom} ref="map">
                 <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ' 
@@ -92,10 +89,13 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
                     </Marker>        
                   )}
               </Map>
+
+              <NavLink to="/"><button className="Browse__Map">Join and Help</button></NavLink>
+
+              
             </div>
           </div>
-      //   </div>
-      // </div>
+
     )
 
 
