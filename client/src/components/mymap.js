@@ -3,12 +3,11 @@ import {Map,TileLayer, Marker, Popup} from 'react-leaflet'
 import './mymap.css'
 import opencage from 'opencage-api-client'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
-
+import ReactMapboxGl from 'react-mapbox-gl';
+import Logo from '../hhlogoreviewbold.png'
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
-//const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
-
+// const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 export default class Mymap extends Component {
-
 constructor(props) {
     super(props);
     this.state = {
@@ -16,15 +15,15 @@ constructor(props) {
     lon:-0.3817765, 
     zoom:25,
     helpers: [],  
-    markers: []
+    markers: [],
+    helperWithActivity: [],    //NEW - ANITA
+    helper_sign_up:[]       //NEW - ANITA
     }
 }
-
 componentDidMount() {
-  this.getHelper()
+  this.getHelper();
+  this.getActivity();    //NEW - ANITA
 }
-
-
 getHelper = () => {
   fetch(`/users/helper_sign_up`)
     .then(response => response.json())
@@ -38,10 +37,19 @@ getHelper = () => {
       }
     });
 }
-
-
-
-addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {       //To add what I want to show
+//NEW - ANITA
+getActivity = () => {
+  fetch(`/users/helperSignUp-with-activity`)
+    .then(response => response.json())
+    .then(response => {
+      this.setState({helperWithActivity: response});
+      for (let i=0; i<this.state.helperWithActivity.length; i++) {
+        const HelpAct =`${this.state.helperWithActivity[i].postcode}, ${this.state.helperWithActivity[i].city}`;  
+        console.log(this.state.helperWithActivity[i]);
+      }
+    });
+}
+addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => {       //To add what I want to show
   console.log(process.env.REACT_APP_OCD_API_KEY); 
     opencage.geocode({ q: helperLocation, key: OCD_API_KEY })
     .then(data => {
@@ -69,15 +77,16 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
     console.log('error', error.message);
   })
 }
-
   render() {
     return (
       <div>
-            <div className = "NiceMap">
-              <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom} ref="map">
-                <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ' 
+        <div className = "split left">
+          <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
+          <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom} ref="map">                                   
+          <div className="mapPositioning">
+                <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ'
                 attribution='<a href="https://www.mapbox.com/about/maps/">Mapbox | </a> <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'/>
-                
+                <ReactMapboxGl/>
                   {this.state.markers.map((marker, index) => //part of map prototype
                     <Marker key={index} position={marker.location}>
                       <Popup key={index}> 
@@ -87,22 +96,41 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
                       {/* <img width="150" /> */}
                       </Popup>
                     </Marker>        
-                  )}
-              </Map>
-
-              <NavLink to="/"><button className="Browse__Map">Join and Help</button></NavLink>
-
-              
-            </div>
+                  )}         
           </div>
+          </Map>
+            <br></br>  
+            <NavLink className="BackButton" to="/"><button className="Browse__Map">Back to Main Page</button></NavLink>
+        </div>
 
+        <div className="split right">
+          <h3>The extra button disappeared, but what the hell is this scroll down in the middle???</h3>
+        </div>
+ 
+{/* ); */}
+
+          {/* </div> */}
+    {/* ) */}
+    <div>
+            <ul>
+        {this.state.helperWithActivity.map((helperWithActivity,id) => {
+    return (
+      <li key ={helperWithActivity.ID}>
+        <div class="flex-container">
+          <div>
+            <p><b>Name</b>: {helperWithActivity.Name} {helperWithActivity.Surname}</p>
+            {/* <p><b>Address:</b> {helper_sign_up.City}, {helper_sign_up.Postcode}</p>
+            <p><b> Email:</b> {helper_sign_up.Email} </p>
+            <p><b>Grape:</b>{helper_sign_up.AboutMe}</p>
+            <p><b>I can help you with:</b> {helper_sign_up.Activity}  </p> */}
+          </div>
+        </div>
+      </li>
     )
-
-
-
-
-
-
-    
+    })}
+     </ul>
+     </div>
+      </div>   
+      )
   }
 }

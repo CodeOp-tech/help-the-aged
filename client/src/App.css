@@ -203,3 +203,11 @@
   font-size: 12px;
   color: #646F7D;
 }
+
+
+.HelperProfiles{
+  width: 50%;
+  background-color: #ffede2;
+  padding: 25px 25px;
+  overflow: auto;
+}
