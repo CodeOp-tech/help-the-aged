@@ -7,16 +7,40 @@ export default class Signin extends Component {
         super(props);
         this.state = {
             name:"",
+            // surname:"",
             email:"",
             postcode:"",
             activity:"",
             aboutme:"",
             hasAgreed: false
         };
-      }
 
-  
-    handleSubmit
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  onSubmit(e) {
+    e.preventDefault()
+
+    const newUser = {
+      name: this.state.name,
+    //   surname: this.state.surname,
+      email: this.state.email,
+      postcode: this.state.postcode,
+      activity:this.state.activity,
+      password: this.state.password,
+      aboutme: this.state.aboutme
+    }
+
+
+
+    // register(newUser).then(res => {
+    //   this.props.history.push(`/login`)
+    // })
+  }
 
     render() {
         return (
@@ -35,58 +59,145 @@ export default class Signin extends Component {
 
 
                 <div className="FormCenter">
-                    <form className="FormFields" onSubmit={this.handleSubmit}>
+                    <form className="FormFields" onSubmit={this.onSubmit}>
                         <div className="FormField">
+                            {/* <div className="Names__Inputs"> */}
                             <label className="FormField__Label" htmlFor="name">Name</label>
-                            <input type="text" id="name" className="FormField__Input" placeholder="Enter your name" name="name"/>
+                            <input 
+                            type="text" 
+                            id="name" 
+                            className="FormField__Input" 
+                            placeholder="Enter your name" 
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.onChange}
+                            />
+                            {/* <label className="FormField__Label" htmlFor="surname">Surname</label>
+                            <input 
+                            type="text" 
+                            id="surname" 
+                            className="FormField__Input" 
+                            placeholder="Enter your surname" 
+                            name="surname"
+                            value={this.state.surname}
+                            onChange={this.onChange}
+                            /> */}
+                            {/* </div> */}
                         </div>
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="email">Email</label>
-                            <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email"/>
+                            <input 
+                            type="email"
+                            id="email"
+                            className="FormField__Input"
+                            placeholder="Enter your email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.onChange}/>
                         </div>
-                        {/* <div className="FormField">
-                            <label className="FormField__Label" htmlFor="password">Password</label>
-                            <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password"/>
-                        </div> */}
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="postcode">Postcode</label>
-                            <input type="postcode" id="postcode" className="FormField__Input" placeholder="Enter your postcode" name="postcode"/>
+                            <input
+                            type="postcode"
+                            id="postcode"
+                            className="FormField__Input"
+                            placeholder="Enter your postcode"
+                            name="postcode"
+                            value={this.state.postcode}
+                            onChange={this.onChange}
+                            />
                         </div>
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="activity">What i can help with:</label>
                         <br/>
                         <div className="Act__Checkboxes">
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
                             <label className="Act__Label">Grocery Shopping</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
-                            <label className="Act__Label">Go For A Walk</label>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
+                            <label className="Act__Label">Going For A Walk</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
                             <label className="Act__Label">Weekly Phone Call</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
-                            <label className="Act__Label">Pharmacy Run</label>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
+                            <label className="Act__Label">Pharmacy Runs</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
-                            <label className="Act__Label">Help With Tech</label>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
+                            <label className="Act__Label">Tech Items</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
                             <label className="Act__Label">Writing Letters</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
                             <label className="Act__Label">Gardening</label>
                             </div>
                             <div>
-                            <input type="checkbox" id="activities" className="Act__List" name="activities" label="Checkbox"/>
-                            <label className="Act__Label">Walk Your Pet</label>
+                            <input 
+                            type="checkbox" 
+                            id="activities" 
+                            className="Act__List" 
+                            name="activities" 
+                            label="Checkbox"
+                            value={this.state.name}
+                            onChange={this.onChange}/>
+                            <label className="Act__Label">Walking Your Pet</label>
                             </div>
                         </div>
                         </div>
@@ -94,7 +205,15 @@ export default class Signin extends Component {
 
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="aboutme">About me</label>
-                            <textarea type="aboutme" id="aboutme" className="FormField__Input" placeholder="Tell us about you" name="aboutme"/>
+                            <textarea 
+                            type="aboutme"
+                            id="aboutme"
+                            className="FormField__Input"
+                            placeholder="Tell us about you"
+                            name="aboutme"
+                            value={this.state.aboutme}
+                            onChange={this.onChange}
+                            />
                         </div>
 
                         <div className="FormField">
@@ -115,3 +234,32 @@ export default class Signin extends Component {
         )
     }
 }
+
+
+
+// this.onChange = this.onChange.bind(this)
+// this.onSubmit = this.onSubmit.bind(this)
+// }
+
+// onChange(e) {
+// this.setState({ [e.target.name]: e.target.value })
+// }
+// onSubmit(e) {
+// e.preventDefault()
+
+// const newUser = 
+
+// newHelper("/",{
+//     method:"POST",
+//     body:JSON.stringify({
+//             name: this.state.name,
+//           //   surname: this.state.surname,
+//             email: this.state.email,
+//             postcode: this.state.postcode,
+//             activity:this.state.activity,
+//             password: this.state.password,
+//             aboutme: this.state.aboutme
+//     }),
+// })
+
+// }
