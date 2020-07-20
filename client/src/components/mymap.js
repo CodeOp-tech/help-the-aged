@@ -104,33 +104,27 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
         </div>
 
         <div className="split right">
-          <h3>The extra button disappeared, but what the hell is this scroll down in the middle???</h3>
+          <h5>Find Out Who Can Offer You Help</h5>
+
+          <ul>
+          {this.state.helperWithActivity.map((helperWithActivity,id) => {
+          return (
+            <li key ={helperWithActivity.ID}>
+              <div class="flex-container">
+                <div>
+                  <p><b>Name</b>: {helperWithActivity.Name} {helperWithActivity.Surname}</p>
+                  <p><b>Address:</b> {helperWithActivity.City}, {helperWithActivity.Postcode}</p>
+                  <p><b> Email:</b> {helperWithActivity.Email} </p>
+                  <p><b>About me: </b>{helperWithActivity.AboutMe}</p>
+                  <p><b>I can help you with:</b> {helperWithActivity.Activity}  </p> 
+                </div>
+              </div>
+            </li>
+          )})}
+          </ul>
         </div>
  
-{/* ); */}
 
-          {/* </div> */}
-    {/* ) */}
-    <div>
-            <ul>
-        {this.state.helperWithActivity.map((helperWithActivity,id) => {
-    return (
-      <li key ={helperWithActivity.ID}>
-        <div class="flex-container">
-          <div>
-            <p><b>Name</b>: {helperWithActivity.Name} {helperWithActivity.Surname}</p>
-            {/* <p><b>Address:</b> {helper_sign_up.City}, {helper_sign_up.Postcode}</p>
-            <p><b> Email:</b> {helper_sign_up.Email} </p>
-            <p><b>Grape:</b>{helper_sign_up.AboutMe}</p>
-            <p><b>I can help you with:</b> {helper_sign_up.Activity}  </p> */}
-          </div>
-        </div>
-      </li>
-    )
-    })}
-     </ul>
-     </div>
       </div>   
-      )
+    )}
   }
-}

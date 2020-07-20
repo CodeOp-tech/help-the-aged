@@ -76,7 +76,7 @@ function insertActivities(id, Arr, res){
  }
 }
 
-//JOINED DATA FROM 2 TABLES FOR MEMBERS' DETAILS
+//JOINED DATA FROM 2 TABLES FOR MEMBERS' DETAILS   ---WILL THIS WORK???
 router.get("/helperSignUp-with-activity", function(req,res,next){
   db("select helper_sign_up.name as Name, helper_sign_up.surname as Surname, helper_sign_up.email as Email, helper_sign_up.city as City, helper_sign_up.postcode as Postcode, helper_sign_up.about_me as AboutMe, activity.activity_name as Activity, activity.image as ActivityLogo, helper_sign_up.ID as ID from helper_sign_up INNER JOIN activity ON activity.id=activity.ID;")
     .then(results => {

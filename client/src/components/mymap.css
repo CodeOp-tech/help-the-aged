@@ -51,10 +51,32 @@ padding-left: 33%;
 /* padding-top: 50px; */
 }
 
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 
+.flex-container {
+    display: flex;
+    background-color: #dcccc0;
+    color: #4C5D72;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    line-height: 80%;
+    font-size: 14px;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+    width: 200px;
+    border-radius: 5%;
+    }
 
-
-
+h5{
+    text-align: center;
+    font-size: 24px;
+}
 
 
 
