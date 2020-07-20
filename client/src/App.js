@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Signin from './components/signin'
 import Signup from './components/signup'
-import Description from './components/description'
+import Carousel from './components/carousel'
 import Mymap from './components/mymap'
 import Logo from './hhlogoreviewbold.png'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+import ReactMapboxGl from 'react-mapbox-gl'
 import './App.css';
 
 export default class App extends Component {
@@ -16,6 +17,16 @@ export default class App extends Component {
           <div className="App">
             <div className="App__Aside">
               <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
+              <div className="Carousel">
+                <Carousel />
+
+              </div>
+
+
+
+
+
+
               <NavLink to="/map"><button className="Browse__Map">Find Helpers Near You</button></NavLink>
               <Route className="Map__Page" path="/map" component={Mymap}></Route>
             </div>
@@ -25,7 +36,6 @@ export default class App extends Component {
 
           </div>
         </div>
-
         <div className="Footer">
           <p className="copyrights">@ 2020. Help The Aged. Created by Anita Noemi Szabo and Albane Chepeau.</p>
         </div>  

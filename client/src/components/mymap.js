@@ -3,6 +3,7 @@ import {Map,TileLayer, Marker, Popup} from 'react-leaflet'
 import './mymap.css'
 import opencage from 'opencage-api-client'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+import ReactMapboxGl from 'react-mapbox-gl'
 
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
 //const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
@@ -14,7 +15,7 @@ constructor(props) {
     this.state = {
     lat:51.528308, 
     lon:-0.3817765, 
-    zoom:25,
+    zoom:8.5,
     helpers: [],  
     markers: []
     }
@@ -90,6 +91,7 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {  
                     </Marker>        
                   )}
               </Map>
+              <ReactMapboxGl/>
 
               <NavLink to="/"><button className="Browse__Map">Join and Help</button></NavLink>
 
