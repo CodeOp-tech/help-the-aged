@@ -9,7 +9,7 @@ export default class helperdetails extends Component {
             <div className="SecondPageRight">
 
                 
-            <helperlist/>
+            {/* <Helperlist/> */}
                 
             </div>
         )

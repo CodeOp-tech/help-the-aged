@@ -19,7 +19,7 @@ export default class App extends Component {
 <ReactMapboxGl/>
           <div className="App">
             <div className="App__Aside">
-              <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
+              <img src={Logo} alt="Helping Hands Logo" height="100px" width="600px" className="hhlogo"/>
               <Route className="Main_Page_Left" exact path="/" component={Description}></Route>               
               <NavLink to="/secondpage"><button className="Browse__Map">Find Helpers Near You</button></NavLink>
               <Route className="Map__Page" path="/secondpage" component={Mymap}></Route>

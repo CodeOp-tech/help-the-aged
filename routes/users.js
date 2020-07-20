@@ -38,6 +38,7 @@ router.get("/helper_sign_up", function (req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
+
 //FIND MEMBERS BASED ON ACTIVITIES 
 router.get("/filter/:activity_id", function (req, res, next) {
   db (`SELECT helper_sign_up.name, helper_sign_up.city, helper_sign_up.postcode, activity.activity_name FROM helper_activity inner join helper_sign_up on helper_activity.helper_sign_up_id=helper_sign_up.id inner join activity on helper_activity.activity_id=activity.id WHERE helper_activity.activity_id='${req.params.activity_id}';`)
@@ -76,15 +77,32 @@ function insertActivities(id, Arr, res){
  }
 }
 
-//JOINED DATA FROM 2 TABLES FOR MEMBERS' DETAILS   ---WILL THIS WORK???
-router.get("/helperSignUp-with-activity", function(req,res,next){
-  db("select helper_sign_up.name as Name, helper_sign_up.surname as Surname, helper_sign_up.email as Email, helper_sign_up.city as City, helper_sign_up.postcode as Postcode, helper_sign_up.about_me as AboutMe, activity.activity_name as Activity, activity.image as ActivityLogo, helper_sign_up.ID as ID from helper_sign_up INNER JOIN activity ON activity.id=activity.ID;")
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
+
+//TO SELECT USERS WITH THEIR CLICKED ACTIVITIES 
+router.get("/helperSignUp-with-activity", async (req, res) => {
+
+    // select all the users
+  const results = await db("SELECT * FROM helper_sign_up;");
+  //and for each user...
+  // results.data.forEach(async (user, i) => {
+    for (let i=0; i<results.data.length; i++) {
+      const user = results.data[i];
+    //select all her activities
+    const activities = await db(
+      `SELECT act.* 
+      FROM helper_activity AS ha 
+      LEFT JOIN activity AS act ON act.id = ha.activity_id 
+      WHERE ha.helper_sign_up_id = ${user.id};`
+    );
+    console.log(activities.data);
+    // and save them in the 'activities' property of the user
+    results.data[i].activities = activities.data;
+  };
+  // return the whole thing
+  res.send(results.data);
 });
-  
+
+
 router.post("/", function(req, res) {
   console.log(req.body.activities);
 db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
@@ -108,6 +126,7 @@ if(result.error) {
 });
 
 
+
 //TO DELETE HELPER PROFILE
 router.delete("/helper_sign_up/:id", function(req, res) {
   if (!Number.isInteger(parseInt(req.params.id))) {
@@ -126,3 +145,41 @@ router.delete("/helper_sign_up/:id", function(req, res) {
 
 module.exports = router; 
 
+
+
+
+
+
+
+
+
+
+// //FIND MEMBERS BASED ON ACTIVITIES
+// router.get("/filter/:activity_id", function (req, res, next) {
+//   db (`SELECT helper_sign_up.name, helper_sign_up.city, helper_sign_up.postcode, activity.activity_name FROM helper_activity inner join helper_sign_up on helper_activity.helper_sign_up_id=helper_sign_up.id inner join activity on helper_activity.activity_id=activity.id WHERE helper_activity.activity_id='${req.params.activity_id}';`)
+//       .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
+
+
+
+// router.get("/helperSignUp-with-activity", async (req, res) => {
+//   // select all the users
+//   const results = await db("SELECT * FROM helper_sign_up;");
+//   //and for each user...
+//   results.data.forEach(async (user) => {
+//     //select all her activities
+//     const activities = await db(
+//       `SELECT activity.* 
+//       FROM helper_activity AS ha 
+//       LEFT JOIN activity AS act ON act.id = ha.activity_id 
+//       WHERE ha.helper_sign_up_id = ${user.id};`
+//     );
+//     // and save them in the 'activities' property of the user
+//     user.activities = activities.data;
+//   });
+//   // return the whole thing
+//   res.send(results.data);
+// });
