@@ -6,7 +6,7 @@ import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 import ReactMapboxGl from 'react-mapbox-gl';
 import Logo from '../hhlogoreviewbold.png'
 
-const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
+const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;  //NOT WORKING!!
 // const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default class Mymap extends Component {
@@ -18,13 +18,14 @@ constructor(props) {
     zoom:25,
     helpers: [],  
     markers: [],
-    helperWithActivity: [],    //NEW - ANITA
-    helper_sign_up:[]       //NEW - ANITA
+    helperWithActivity: [],    
+    filteredHelpers: [],   //NEW
+    checkedActivity:[],   //NEW
     }
 }
 componentDidMount() {
   this.getHelper();
-  this.getActivity();    //NEW - ANITA
+  this.getActivity();    
 }
 getHelper = () => {
   fetch(`/users/helper_sign_up`)
@@ -39,7 +40,8 @@ getHelper = () => {
       }
     });
 }
-//NEW - ANITA
+
+
 getActivity = () => {
   fetch(`/users/helperSignUp-with-activity`)
     .then(response => response.json())
@@ -51,6 +53,42 @@ getActivity = () => {
       }
     });
 }
+
+
+//FILTER - NEW - DO I NEED THIS?
+// getFilteredHelpers= () => {
+//   fetch(`/users/filter/:activity_id`)
+//     .then(response => response.json())
+//     .then(response => {
+//       this.setState({filteredHelpers: response});
+//       for (let i=0; i<this.state.filteredHelpers.length; i++) {
+//         const FilteredList =`${this.state.filteredHelpers[i].postcode}, ${this.state.filteredHelpers[i].city}`;  
+//         console.log(this.state.helperWithActivity[i]);
+//       }
+//     });
+// }
+
+
+//NEW - FILTER - I MAP ALREADY HhelperWithACtivity SO NO OTHER FETCH REQUEST??
+filteredMembers =  () =>{
+  for(let i=0; i<this.state.helperWithActivity.length; i++) {
+    if(this.state.helperWithActivity.activities[i] === true){
+      this.state.filteredHelpers.push(i+1)
+      console.log(this.state.filteredHelpers[i]);
+      }}}
+
+
+//NEW - FILTER - IS THE CONDITION GOOD?? 
+  handleClick = (e) => {
+    let arr = [...this.state.helperWithActivity];   
+    arr[e.target.name-1] = e.target.checked;   
+    this.setState({
+      helperWithActivity: arr
+    })
+  }
+
+
+
 addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => {       //To add what I want to show
   console.log(process.env.REACT_APP_OCD_API_KEY); 
     opencage.geocode({ q: helperLocation, key: OCD_API_KEY })
@@ -85,7 +123,7 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
     return (
       <div>
         <div className = "split left">
-          <img src={Logo} alt="Helping Hands Logo" height="100px" width="600px" className="hhlogo"/>
+          <img src={Logo} alt="Helping Hands Logo" width="600px" className="hhlogo"/>
           <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom}>                                   
           <div className="mapPositioning">
                 <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ'
@@ -104,12 +142,34 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
           </div>
           </Map>
             <br></br>  
+            
+
+          <div>
+            <label for="activity">Select Helper Based On Activity</label>
+              <select id="activity" name="Activity">
+                <option value="groceryShopping">Grocery Shopping</option>
+                <option value="goForAWalk">Go For A Walk</option>
+                <option value="writingLetters">Writing Letters</option>
+                <option value="pharmacyRun">Pharmacy Run</option>
+                <option value="walkYourPet">Walk Your Pet</option>
+                <option value="helpWithTech">Help With Tech</option>
+                <option value="weeklyPhoneCall">Weekly Phone Call</option>
+                <option value="gardening">Gardening</option>
+              </select>
+            <input type="submit" value="Submit"/>
+          </div>
+
+
+
+
             <NavLink className="BackButton" to="/"><button className="Browse__Map">Back to Main Page</button></NavLink>
         </div>
 
+{/* <input type="checkbox" onClick={(e) => this.handleClick(e)} id={helperWithActivity.id} name={helperWithActivity.activity}/>   */}
+
+
         <div className="split right">
           <h5>Find Out Who Can Offer You Help</h5>
-
           <ul>
           {this.state.helperWithActivity.map((helperWithActivity,id) => {
           return (

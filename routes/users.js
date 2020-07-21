@@ -20,7 +20,6 @@ router.get('/', function(req, res, next) {
 
 //FOR THE ACTIVITY LIST
 router.get("/activity", function (req, res, next) {
-  console.log("hellodata");
   db ("SELECT * FROM activity;")
     .then(results => {
       console.log(results);  //is a variable, no quotation

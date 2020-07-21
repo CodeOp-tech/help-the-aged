@@ -34,8 +34,6 @@ padding-top: 5px;
 .left {
 left: 0;
 background-color: #2c432d;
-
-
 }
 
 .right {
@@ -79,67 +77,29 @@ h5{
 }
 
 
+input[type=text], select {
+  width: 70%;
+  text-align: center;
+  padding: 12px 20px;
+  display: flex;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  box-sizing: border-box;
+  color: #4C5D72;
+  background-color: #ffede2;
+  font-weight: bold;
+}
 
-      /* .centered {
-        display: flex;
-        padding-top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-      } */
-/* 
-      .mapPositioning{
-        position: absolute;
-        padding-top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-      } */
-
-
-
-
-/*with bootstrap
-      /* .leftside, .rightside{
-          height:100vh;
-          width: 100%;
-      }
-
-      .leftside {
-        left: 0;
-        background-color: #2c432d;
-        
-        
-        }
-        
-        .rightside {
-        right: 0;
-        background-color: #ffede2;
-        color: #4C5D72;
-        } */
-
-
-
-/*with split css3
-        /* .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            padding-top: 5px;
-            }
-            
-            .left {
-            left: 0;
-            background-color: #2c432d;
-            
-            
-            }
-            
-            .right {
-            right: 0;
-            background-color: #ffede2;
-            color: #4C5D72;
-            } */
+input[type=submit] {
+  width:70%;
+  background-color: #ffede2;
+  color: #4C5D72;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
