@@ -83,7 +83,6 @@ router.get("/helperSignUp-with-activity", async (req, res) => {
     // select all the users
   const results = await db("SELECT * FROM helper_sign_up;");
   //and for each user...
-  // results.data.forEach(async (user, i) => {
     for (let i=0; i<results.data.length; i++) {
       const user = results.data[i];
     //select all her activities

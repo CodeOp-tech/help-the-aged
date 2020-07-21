@@ -27,6 +27,7 @@ componentDidMount() {
   this.getHelper();
   this.getActivity();    
 }
+
 getHelper = () => {
   fetch(`/users/helper_sign_up`)
     .then(response => response.json())
@@ -46,17 +47,19 @@ getActivity = () => {
   fetch(`/users/helperSignUp-with-activity`)
     .then(response => response.json())
     .then(response => {
-      this.setState({helperWithActivity: response});
+      this.setState({helperWithActivity: response, filteredHelpers: response});
       for (let i=0; i<this.state.helperWithActivity.length; i++) {
-        const HelpAct =`${this.state.helperWithActivity[i].postcode}, ${this.state.helperWithActivity[i].city}`;  
+        const HelpAct =`${this.state.helperWithActivity[i].postcode}, ${this.state.helperWithActivity[i].city}, ${this.state.helperWithActivity[i].id}, ${this.state.helperWithActivity[i].name}`;  
         console.log(this.state.helperWithActivity[i]);
       }
     });
 }
 
 
+
+
 //FILTER - NEW - DO I NEED THIS?
-// getFilteredHelpers= () => {
+// getFilteredHelpers= () => {  
 //   fetch(`/users/filter/:activity_id`)
 //     .then(response => response.json())
 //     .then(response => {
@@ -65,28 +68,58 @@ getActivity = () => {
 //         const FilteredList =`${this.state.filteredHelpers[i].postcode}, ${this.state.filteredHelpers[i].city}`;  
 //         console.log(this.state.helperWithActivity[i]);
 //       }
-//     });
-// }
+//     });  
+// }  
 
-
+ 
 //NEW - FILTER - I MAP ALREADY HhelperWithACtivity SO NO OTHER FETCH REQUEST??
-filteredMembers =  () =>{
-  for(let i=0; i<this.state.helperWithActivity.length; i++) {
-    if(this.state.helperWithActivity.activities[i] === true){
-      this.state.filteredHelpers.push(i+1)
-      console.log(this.state.filteredHelpers[i]);
-      }}}
+// filteredMembers =  () =>{
+//   for(let i=0; i<this.state.helperWithActivity.length; i++) {
+//     if(this.state.helperWithActivity.activities[i] === true){  //TP ADD WHAT PART OF THE ARRAY TO REACH helperWithActivity.activities.map(e => e.activity_name)
+//       this.setState.filteredHelpers.push(i+1)       //CHANGED TO SETSTATE
+//       console.log(this.state.filteredHelpers[i]);
+//       }}}
+
+// filteredMembers = () =>
+//   this.state.helperWithActivity.filter(
+//     (member) =>
+//       member.activities.findIndex(
+//         (activity) => activity.id === this.state.helperWithActivity[member].id 
+//       ) > -1
+//     )
+
+
+
+    // then declare it here, parameters are not passed magically
+    filteredMembers = (filterValue) => {
+      if(filterValue) {
+      const filteredHelpers = this.state.helperWithActivity
+        .filter((member) => member.activities
+        // Compare each member activity id with the one selected in the dropdown
+          .findIndex(activity => activity.id == filterValue) > -1
+        )
+      // Set your state to preserve the change and be able to use it on the html
+      this.setState({ filteredHelpers: filteredHelpers })
+      console.log(filteredHelpers);
+    } else {
+      this.setState({filteredHelpers: this.state.helperWithActivity})  //NO VALUE TO FILTER, ALL IN 
+    }
+    }
+
+
+  handleDropdown(e) {
+    this.filteredMembers(e.target.value);
+  }
 
 
 //NEW - FILTER - IS THE CONDITION GOOD?? 
-  handleClick = (e) => {
-    let arr = [...this.state.helperWithActivity];   
-    arr[e.target.name-1] = e.target.checked;   
-    this.setState({
-      helperWithActivity: arr
-    })
-  }
-
+  // handleClick = (e) => {
+  //   let arr = [...this.state.helperWithActivity];   
+  //   arr[e.target.name-1] = e.target.checked;   
+  //   this.setState({
+  //     helperWithActivity: arr
+  //   })
+  // }
 
 
 addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => {       //To add what I want to show
@@ -146,15 +179,16 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
 
           <div>
             <label for="activity">Select Helper Based On Activity</label>
-              <select id="activity" name="Activity">
-                <option value="groceryShopping">Grocery Shopping</option>
-                <option value="goForAWalk">Go For A Walk</option>
-                <option value="writingLetters">Writing Letters</option>
-                <option value="pharmacyRun">Pharmacy Run</option>
-                <option value="walkYourPet">Walk Your Pet</option>
-                <option value="helpWithTech">Help With Tech</option>
-                <option value="weeklyPhoneCall">Weekly Phone Call</option>
-                <option value="gardening">Gardening</option>
+              <select id="activity" name="Activity" onChange={this.handleDropdown.bind(this)}>
+                <option value="">All</option>
+                <option value="1">Grocery Shopping</option>
+                <option value="2">Go For A Walk</option>
+                <option value="3">Writing Letters</option>
+                <option value="4">Pharmacy Run</option>
+                <option value="5">Walk Your Pet</option>
+                <option value="6">Help With Tech</option>
+                <option value="7">Weekly Phone Call</option>
+                <option value="8">Gardening</option>
               </select>
             <input type="submit" value="Submit"/>
           </div>
@@ -168,10 +202,12 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
 {/* <input type="checkbox" onClick={(e) => this.handleClick(e)} id={helperWithActivity.id} name={helperWithActivity.activity}/>   */}
 
 
+
+
         <div className="split right">
           <h5>Find Out Who Can Offer You Help</h5>
           <ul>
-          {this.state.helperWithActivity.map((helperWithActivity,id) => {
+          {this.state.filteredHelpers.map((helperWithActivity,id) => {
           return (
             <li key ={helperWithActivity.ID}>
               <div class="flex-container">
