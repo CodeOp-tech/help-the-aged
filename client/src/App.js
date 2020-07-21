@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Signin from './components/signin'
-import Signup from './components/signup'
-import Carousel from './components/carousel'
+// import Signup from './components/signup'
+//import Carousel from './components/carousel'
 import Mymap from './components/mymap'
 import Logo from './hhlogoreviewbold.png'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
@@ -17,15 +17,6 @@ export default class App extends Component {
           <div className="App">
             <div className="App__Aside">
               <img src={Logo} alt="Helping Hands Logo" heigth="100px" width="600px" className="hhlogo"/>
-              <div className="Carousel">
-                <Carousel />
-
-              </div>
-
-
-
-
-
 
               <NavLink to="/map"><button className="Browse__Map">Find Helpers Near You</button></NavLink>
               <Route className="Map__Page" path="/map" component={Mymap}></Route>

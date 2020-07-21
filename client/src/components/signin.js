@@ -1,46 +1,67 @@
 import React, { Component } from 'react'
 // import Logo from '../hhlogoreviewbold.png'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+const INIT_STATE = { 
+    name: '',
+    email:'',
+    postcode:'',
+    aboutme:'',
+    act :[
+        {id:'cb1', value:'Grocery Shopping', isChecked: false},
+        {id:'cb2', value:'Going For A Walk', isChecked: false},
+        {id:'cb3', value:'Weekly Phone Call', isChecked: false},
+        {id:'cb4', value:'Pharmacy Runs', isChecked: false},
+        {id:'cb5', value:'Tech Items', isChecked: false},
+        {id:'cb6', value:'Writing Letters', isChecked: false},
+        {id:'cb7', value:'Gardening', isChecked: false},
+        {id:'cb8', value:'Walking Your Pet', isChecked: false}
+    ]
+};
+
+//cb1: false, cb2: false, cb3: false, cb4: false, cb5: false, cb6: false, cb7: false, cb8: false
 
 export default class Signin extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name:"",
-            // surname:"",
-            email:"",
-            postcode:"",
-            activity:"",
-            aboutme:"",
-            hasAgreed: false
-        };
+        this.state = INIT_STATE;
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+    }
+    
+    onChange(event) {
+        const target = event.target;
+        const name = target.name;
+        if (target.tagName === 'INPUT' && target.type === 'checkbox') {
+            this.setState({ [name]: target.checked });
+        } else {
+            this.setState({ [name]: target.value });
+        }
+    }
 
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-  onSubmit(e) {
-    e.preventDefault()
-
-    const newUser = {
-      name: this.state.name,
-    //   surname: this.state.surname,
-      email: this.state.email,
-      postcode: this.state.postcode,
-      activity:this.state.activity,
-      password: this.state.password,
-      aboutme: this.state.aboutme
+    onSubmit(event) {
+        event.preventDefault();
+        console.log('submit!', this.state);
+        this.setState(INIT_STATE);
     }
 
 
+    newUser() {
+    fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: this.state(INIT_STATE) })
+      })
+        .then(res => res.json())
+        .then(items => {
+          this.setState({ input: items });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
 
-    // register(newUser).then(res => {
-    //   this.props.history.push(`/login`)
-    // })
-  }
 
     render() {
         return (
@@ -117,8 +138,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb1"
+                            value='Grocery Shopping'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Grocery Shopping</label>
                             </div>
@@ -128,8 +150,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb2"
+                            value='Going For A Walk'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Going For A Walk</label>
                             </div>
@@ -139,8 +162,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb3"
+                            value='Weekly Phone Call'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Weekly Phone Call</label>
                             </div>
@@ -150,8 +174,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb4"
+                            value='Pharmacy Runs'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Pharmacy Runs</label>
                             </div>
@@ -161,8 +186,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb5"
+                            value='Tech Items'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Tech Items</label>
                             </div>
@@ -172,8 +198,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb6"
+                            value='Writing Letters'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Writing Letters</label>
                             </div>
@@ -183,8 +210,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb7"
+                            value='Gardening'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Gardening</label>
                             </div>
@@ -194,8 +222,9 @@ export default class Signin extends Component {
                             id="activities" 
                             className="Act__List" 
                             name="activities" 
-                            label="Checkbox"
-                            value={this.state.name}
+                            label="cb8"
+                            value='Walking Your Pet'
+                            checked={this.state.checkbox}
                             onChange={this.onChange}/>
                             <label className="Act__Label">Walking Your Pet</label>
                             </div>
@@ -234,32 +263,3 @@ export default class Signin extends Component {
         )
     }
 }
-
-
-
-// this.onChange = this.onChange.bind(this)
-// this.onSubmit = this.onSubmit.bind(this)
-// }
-
-// onChange(e) {
-// this.setState({ [e.target.name]: e.target.value })
-// }
-// onSubmit(e) {
-// e.preventDefault()
-
-// const newUser = 
-
-// newHelper("/",{
-//     method:"POST",
-//     body:JSON.stringify({
-//             name: this.state.name,
-//           //   surname: this.state.surname,
-//             email: this.state.email,
-//             postcode: this.state.postcode,
-//             activity:this.state.activity,
-//             password: this.state.password,
-//             aboutme: this.state.aboutme
-//     }),
-// })
-
-// }
