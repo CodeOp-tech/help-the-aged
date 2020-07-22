@@ -169,21 +169,7 @@ router.get("/filtertwo/helper_sign_up/:postcode", function (req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// //FILL REGISTRATION FORM AND INTERMEDIATE TABLE
-// function insertActivities(id, Arr, res){
-//   // For each activity on the list, we need to do an insert in the intermediate table, connecting user_id and activity_id
-//   for (let i = 0; i < Arr.length; i++) {
-//   db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${id}', '${Arr[i]}');`)
-//    .then(result => {
-//      if(result.error) {
-//        res.status(404).send({error: result.error});
-//         } else{
-//          res.send("Query worked");
-//         }
-//     })
-//   .catch(err => res.status(500).send(err));
-//  }
-// }
+
 
 //TO SELECT USERS WITH THEIR CLICKED ACTIVITIES 
 router.get("/helperSignUp-with-activity", async (req, res) => {
@@ -211,55 +197,22 @@ router.get("/helperSignUp-with-activity", async (req, res) => {
 
 
 router.post("/", function(req, res) {
-  let body = req.body;
-  console.log(`(${body.name})`);
   let sql = 'INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES';
-  //sql += '("A", "b", "c", "d", "e", "f");'
-  sql += ' ("' + req.body.name + '", ';
-  sql += ' "' + req.body.surname + '", ';
-  sql += ' "' + req.body.email + '", ';
-  sql += ' "' + req.body.city + '", ';
-  sql += ' "' + req.body.postcode + '", ';
-  sql += ' "' + req.body.about_me + '" ); ';
-  console.log(sql);
-//db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
-db(sql)
-.then(result => {
-if(result.error) {
- res.status(404).send({error: result.error});
-  } else {
-    const results = await db("SELECT * FROM helper_sign_up");
-    for (let i = 0 ; i < result.data.length ; i++) {
-      const user = result.data[i];
-      const activities = await db(
-        `SELECT act.* 
-        FROM helper_activity AS ha 
-        LEFT JOIN activity AS act ON act.id = ha.activity_id 
-        WHERE ha.helper_sign_up_id = ${user.id};`
-      )
-      .then (`INSERT INTO helper_activity (id, helper_sign_up_id, activity_id);`)
-    };
-    };
-});
-
-
-// router.get("/", async (req, res) => {
-//   const results = await db("SELECT * FROM helper_sign_up;");
-//     for (let i=0; i<results.data.length; i++) {
-//       const user = results.data[i];
-//     const activities = await db(
-//       `SELECT act.* 
-//       FROM helper_activity AS ha 
-//       LEFT JOIN activity AS act ON act.id = ha.activity_id 
-//       WHERE ha.helper_sign_up_id = ${user.id};`
-//     );
-//     console.log(activities.data);
-//     results.data[i].activities = activities.data;
-//   };
-//   res.send(results.data);
-//   });
-  
-
+    sql += ' ("' + req.body.name + '", ';
+    sql += ' "' + req.body.surname + '", ';
+    sql += ' "' + req.body.email + '", ';
+    sql += ' "' + req.body.city + '", ';
+    sql += ' "' + req.body.postcode + '", ';
+    sql += ' "' + req.body.about_me + '" ); ';
+  db(sql)
+    .then(result => {
+      if(result.error) {
+        res.status(404).send({error: result.error});
+      } else {
+        db(`INSERT INTO helper_activity (id, helper_sign_up_id, activity_id);`)
+      }
+    });
+})
 
 
 //TO DELETE HELPER PROFILE
@@ -344,3 +297,20 @@ module.exports = router;
 //  .catch(err => res.status(500).send(err));
 // });
 
+
+
+// //FILL REGISTRATION FORM AND INTERMEDIATE TABLE
+// function insertActivities(id, Arr, res){
+//   // For each activity on the list, we need to do an insert in the intermediate table, connecting user_id and activity_id
+//   for (let i = 0; i < Arr.length; i++) {
+//   db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${id}', '${Arr[i]}');`)
+//    .then(result => {
+//      if(result.error) {
+//        res.status(404).send({error: result.error});
+//         } else{
+//          res.send("Query worked");
+//         }
+//     })
+//   .catch(err => res.status(500).send(err));
+//  }
+// }

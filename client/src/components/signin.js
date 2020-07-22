@@ -7,8 +7,7 @@ const INIT_STATE = {
     email:'',
     city:'',
     postcode:'',
-    aboutme:'',
-    activity:'walk your pet'
+    aboutme:''
     // act :[
     //     {id:'1', value:'Grocery Shopping', isChecked: true},
     //     {id:'2', value:'Going For A Walk', isChecked: false},
