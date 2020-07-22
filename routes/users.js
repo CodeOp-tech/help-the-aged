@@ -100,28 +100,163 @@ router.get("/helperSignUp-with-activity", async (req, res) => {
   res.send(results.data);
 });
 
+//OPTION 1
 
-router.post("/", function(req, res) {
-  console.log(req.body.activities);
-db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
-.then(result => {
-if(result.error) {
- res.status(404).send({error: result.error});
-  } else {
+router.post("/", async (req, res) => {
+  // insert the new user
+  // let body = req.body;
+  // console.log(`(${body.name})`);
+  let sql = await db (`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES`);
+  sql += ' ("' + req.body.name + '", ';
+  sql += ' "' + req.body.surname + '", ';
+  sql += ' "' + req.body.email + '", ';
+  sql += ' "' + req.body.city + '", ';
+  sql += ' "' + req.body.postcode + '", ';
+  sql += ' "' + req.body.about_me + '" ); ';
+  console.log(sql);
 
-  db('SELECT ID FROM helper_sign_up ORDER BY ID DESC LIMIT 1;')  //WE GET THE USER ID
-    .then(answer => {
-     if(answer.error) {
-      res.status(404).send({error: answer.error}); 
-       }else{
-         return insertActivities(answer.data[0].ID, req.body.activities, res);
-       }
-    })
-    .catch(err => res.status(500).send(err));
-   }
+  //and grab the new user's ID (the last user inserted)
+const results = await db('SELECT * FROM helper_sign_up ORDER BY id DESC;');
+const user_id = results.data[0].id;
+
+//and for each activity that we receive in the request & insert it into the pivot table
+
+    for (let i = 0; i<activities.length; i++){
+      await db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${req.body.helper_sign_up_id}', '${req.body.activity_id}');`)
+    }
+      results.data[i].user_id = user_id.data;
+      res.send({ msg: "Helper saved with activities!" });
   })
- .catch(err => res.status(500).send(err));
-});
+ 
+    
+  
+
+
+
+
+
+//OPTION 2
+// router.post("/", async (req, res) => {
+//   // insert the new user
+//   // let body = req.body;
+//   // console.log(`(${body.name})`);
+//   let sql = await db (`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES`);
+//   sql += ' ("' + req.body.name + '", ';
+//   sql += ' "' + req.body.surname + '", ';
+//   sql += ' "' + req.body.email + '", ';
+//   sql += ' "' + req.body.city + '", ';
+//   sql += ' "' + req.body.postcode + '", ';
+//   sql += ' "' + req.body.about_me + '" ); ';
+//   console.log(sql);
+
+//   //and grab the new user's ID (the last user inserted)
+// const results = await db('SELECT * FROM helper_sign_up ORDER BY id DESC;');
+// const user_id = results.data[0].id;
+
+// //and for each activity that we receive in the request & insert it into the pivot table
+
+// db(sql)
+// .then(result => {
+// if(result.error) {
+//  res.status(404).send({error: result.error});
+//   } else {
+//     for (let i = 0; i<activities.length; i++){
+//       await db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${req.body.helper_sign_up_id}', '${req.body.activity_id}');`)
+//       .then(answer => {
+//         res.send({ msg: "Helper saved with activities!" });
+//         results.data[i].user_id = user_id.data;
+//       })
+//       .catch(err => res.status(500).send(err));
+//     }
+//     }}
+// )});
+
+
+
+// db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
+// .then(result => {
+// if(result.error) {
+//  res.status(404).send({error: result.error});
+//   } else {
+
+//   db('SELECT ID FROM helper_sign_up ORDER BY ID DESC LIMIT 1;')  
+//     .then(answer => {
+//      if(answer.error) {
+//       res.status(404).send({error: answer.error}); 
+//        }else{
+//          return insertActivities(answer.data[0].ID, req.body.activities, res);
+//        }
+//     })
+//     .catch(err => res.status(500).send(err));
+//    }
+//   })
+//  .catch(err => res.status(500).send(err));
+// });
+    
+
+
+
+
+
+
+//CORRECT ONE WITHOUT ACTIVITY
+// router.post("/", function(req, res) {
+//   let body = req.body;
+//   console.log(`(${body.name})`);
+//   let sql = 'INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES';
+//   //sql += '("A", "b", "c", "d", "e", "f");'
+//   sql += ' ("' + req.body.name + '", ';
+//   sql += ' "' + req.body.surname + '", ';
+//   sql += ' "' + req.body.email + '", ';
+//   sql += ' "' + req.body.city + '", ';
+//   sql += ' "' + req.body.postcode + '", ';
+//   sql += ' "' + req.body.about_me + '" ); ';
+//   console.log(sql);
+// //db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
+// db(sql)
+// .then(result => {
+// if(result.error) {
+//  res.status(404).send({error: result.error});
+//   } else {
+//   db('SELECT ID FROM helper_sign_up ORDER BY ID DESC LIMIT 1;')  //WE GET THE USER ID
+//     .then(answer => {
+//      if(answer.error) {
+//       res.status(404).send({error: answer.error}); 
+//        }else{
+//          return insertActivities(answer.data[0].ID, req.body.activities, res);
+//          //return res.send({error:'insert activities'})
+//        }
+//     })
+//     .catch(err => res.status(500).send(err));
+//    }
+//   })
+//  .catch(err => res.status(500).send(err));
+// });
+
+
+
+//ORIGINAL POST METHOD
+// router.post("/", function(req, res) {
+//   console.log(req.body.activities);
+// db(`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ('${req.body.name}', '${req.body.surname}', '${req.body.email}', '${req.body.city}','${req.body.postcode}', '${req.body.about_me}');`)
+// .then(result => {
+// if(result.error) {
+//  res.status(404).send({error: result.error});
+//   } else {
+
+//   db('SELECT ID FROM helper_sign_up ORDER BY ID DESC LIMIT 1;')  
+//     .then(answer => {
+//      if(answer.error) {
+//       res.status(404).send({error: answer.error}); 
+//        }else{
+//          return insertActivities(answer.data[0].ID, req.body.activities, res);
+//        }
+//     })
+//     .catch(err => res.status(500).send(err));
+//    }
+//   })
+//  .catch(err => res.status(500).send(err));
+// });
 
 
 

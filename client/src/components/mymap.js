@@ -15,7 +15,7 @@ constructor(props) {
     this.state = {
     lat:51.528308, 
     lon:-0.3817765, 
-    zoom:25,
+    zoom:8.5,
     helpers: [],  
     markers: [],
     helperWithActivity: [],    
@@ -112,15 +112,6 @@ getActivity = () => {
   }
 
 
-//NEW - FILTER - IS THE CONDITION GOOD?? 
-  // handleClick = (e) => {
-  //   let arr = [...this.state.helperWithActivity];   
-  //   arr[e.target.name-1] = e.target.checked;   
-  //   this.setState({
-  //     helperWithActivity: arr
-  //   })
-  // }
-
 
 addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => {       //To add what I want to show
   console.log(process.env.REACT_APP_OCD_API_KEY); 
@@ -159,7 +150,7 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
           <img src={Logo} alt="Helping Hands Logo" width="600px" className="hhlogo"/>
           <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom}>                                   
           <div className="mapPositioning">
-                <TileLayer url='https://api.mapbox.com/styles/v1/albaneldn/ckcnviqvc1nvz1iqet1kpzmnj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxiYW5lbGRuIiwiYSI6ImNrY252a2pzOTBmN20ycmx2NW1zM2YyOHQifQ.H3wB-UZZivkXKf-siLrnWQ'
+                <TileLayer url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
                 attribution='<a href="https://www.mapbox.com/about/maps/">Mapbox | </a> <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'/>
                 <ReactMapboxGl/>
                   {this.state.markers.map((marker, index) => //part of map prototype
@@ -190,7 +181,7 @@ addLocation = (helperLocation, helperName, helperSurname, helperAbout_me,) => { 
                 <option value="7">Weekly Phone Call</option>
                 <option value="8">Gardening</option>
               </select>
-            <input type="submit" value="Submit"/>
+            {/* <input type="submit" value="Submit"/> */}
           </div>
 
 
