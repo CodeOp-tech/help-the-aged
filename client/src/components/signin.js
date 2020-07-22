@@ -7,7 +7,8 @@ const INIT_STATE = {
     email:'',
     city:'',
     postcode:'',
-    aboutme:''
+    aboutme:'',
+    activity:'walk your pet'
     // act :[
     //     {id:'1', value:'Grocery Shopping', isChecked: true},
     //     {id:'2', value:'Going For A Walk', isChecked: false},
@@ -145,7 +146,7 @@ export default class Signin extends Component {
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="activity">What i can help with:</label>
                         <br/>
-                        {/* <div className="Act__Checkboxes">
+                        <div className="Act__Checkboxes">
                             <div>
                             <input 
                             type="checkbox" 
@@ -242,7 +243,7 @@ export default class Signin extends Component {
                             onChange={this.onChange}/>
                             <label className="Act__Label">Walking Your Pet</label>
                             </div>
-                        </div> */}
+                        </div>
                         </div>
                         <br/>
 
