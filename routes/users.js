@@ -206,28 +206,29 @@ router.get("/helperSignUp-with-activity", async (req, res) => {
 //     });
 // })
 
-// router.post("/", async (req, res) => {
-//   // insert the new user
-//   // let body = req.body;
-//   // console.log(`(${body.name})`);
-//   let sql = await db (`INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES`);
-//   sql += ' ("' + req.body.name + '", ';
-//   sql += ' "' + req.body.surname + '", ';
-//   sql += ' "' + req.body.email + '", ';
-//   sql += ' "' + req.body.city + '", ';
-//   sql += ' "' + req.body.postcode + '", ';
-//   sql += ' "' + req.body.about_me + '" ); ';
-//   console.log(sql);
-//   //and grab the new user's ID (the last user inserted)
-// const results = await db('SELECT * FROM helper_sign_up ORDER BY id DESC;');
-// const user_id = results.data[0].id;
-// //and for each activity that we receive in the request & insert it into the pivot table
-//     for (let i = 0; i<activities.length; i++){
-//       await db(`INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${req.body.helper_sign_up_id}', '${req.body.activity_id}');`)
-//     }
-//       results.data[i].user_id = user_id.data;
-//       res.send({ msg: "Helper saved with activities!" });
-//   })
+router.post("/", async (req, res) => {
+  const { name, surname, email, city, postcode, about_me, act } = req.body;
+
+  // insert the new user
+  await db(
+    `INSERT INTO helper_sign_up (name, surname, email, city, postcode, about_me) VALUES ("${name}","${surname}","${email}","${city}","${postcode}","${about_me}");`
+  );
+
+  // console.log(sql);
+  // //and grab the new user's ID (the last user inserted)
+  const results = await db("SELECT * FROM helper_sign_up ORDER BY id DESC;");
+  const user_id = results.data[0].id;
+
+  // //and for each activity that we receive in the request & insert it into the pivot table
+  for (let i = 0; i < req.body.act.length; i++) {
+    const activity_id = req.body.act[i];
+    await db(
+      `INSERT INTO helper_activity (helper_sign_up_id, activity_id) VALUES ('${user_id}', '${activity_id}');`
+    );
+  }
+  // results.data[i].user_id = user_id.data;
+  res.send({ msg: "Helper saved with activities!" });
+});
 
 //TO DELETE HELPER PROFILE
 router.delete("/helper_sign_up/:id", function (req, res) {

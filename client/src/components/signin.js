@@ -8,16 +8,16 @@ const INIT_STATE = {
   city: "",
   postcode: "",
   aboutme: "",
-  // act :[
-  //     {id:'1', value:'Grocery Shopping', isChecked: true},
-  //     {id:'2', value:'Going For A Walk', isChecked: false},
-  //     {id:'3', value:'Writing Letters', isChecked: false},
-  //     {id:'4', value:'Pharmacy Runs', isChecked: false},
-  //     {id:'5', value:'Walk Your Pet', isChecked: false},
-  //     {id:'6', value:'Help With Tech', isChecked: false},
-  //     {id:'7', value:'Weekly Phone', isChecked: false},
-  //     {id:'8', value:'Gardening', isChecked: false}
-  // ]
+  act: [
+    { id: "1", value: "Grocery Shopping", isChecked: false },
+    { id: "2", value: "Going For A Walk", isChecked: false },
+    { id: "3", value: "Writing Letters", isChecked: false },
+    { id: "4", value: "Pharmacy Runs", isChecked: false },
+    { id: "5", value: "Walk Your Pet", isChecked: false },
+    { id: "6", value: "Help With Tech", isChecked: false },
+    { id: "7", value: "Weekly Phone", isChecked: false },
+    { id: "8", value: "Gardening", isChecked: false },
+  ],
 };
 
 //cb1: false, cb2: false, cb3: false, cb4: false, cb5: false, cb6: false, cb7: false, cb8: false
@@ -40,6 +40,18 @@ export default class Signin extends Component {
     }
   }
 
+  handleCheckboxChange = (e) => {
+    const { value } = e.target;
+    const { act } = this.state;
+    this.setState({
+      act: act.map((activity) =>
+        activity.id == value
+          ? { ...activity, isChecked: !activity.isChecked }
+          : activity
+      ),
+    });
+  };
+
   onSubmit(event) {
     event.preventDefault();
     //console.log('submit!', this.state);
@@ -49,12 +61,19 @@ export default class Signin extends Component {
 
   newUser() {
     //console.log(this.state);
+
+    let { name, surname, email, city, postcode, aboutme, act } = this.state;
+
+    act = act.filter((e) => e.isChecked).map((e) => e.id);
+
+    const body = { name, surname, email, city, postcode, aboutme, act };
+
     fetch("/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(body),
     })
       .then((res) => {
         console.log(res);
@@ -171,7 +190,24 @@ export default class Signin extends Component {
                 What i can help with:
               </label>
               <br />
-              <div className="Act__Checkboxes">
+
+              <div>
+                {this.state.act.map((activity) => (
+                  <div key={activity.id}>
+                    <label className="Act__Label">
+                      <input
+                        type="checkbox"
+                        onChange={this.handleCheckboxChange}
+                        value={activity.id}
+                        checked={activity.isChecked}
+                      />{" "}
+                      {activity.value}
+                    </label>
+                  </div>
+                ))}
+              </div>
+
+              {/* <div className="Act__Checkboxes">
                 <div>
                   <input
                     type="checkbox"
@@ -276,7 +312,7 @@ export default class Signin extends Component {
                   />
                   <label className="Act__Label">Walking Your Pet</label>
                 </div>
-              </div>
+              </div> */}
             </div>
             <br />
 
