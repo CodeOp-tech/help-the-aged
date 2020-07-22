@@ -3,19 +3,21 @@ import React, { Component } from 'react'
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 const INIT_STATE = { 
     name: '',
+    surname:'',
     email:'',
+    city:'',
     postcode:'',
-    aboutme:'',
-    act :[
-        {id:'cb1', value:'Grocery Shopping', isChecked: false},
-        {id:'cb2', value:'Going For A Walk', isChecked: false},
-        {id:'cb3', value:'Weekly Phone Call', isChecked: false},
-        {id:'cb4', value:'Pharmacy Runs', isChecked: false},
-        {id:'cb5', value:'Tech Items', isChecked: false},
-        {id:'cb6', value:'Writing Letters', isChecked: false},
-        {id:'cb7', value:'Gardening', isChecked: false},
-        {id:'cb8', value:'Walking Your Pet', isChecked: false}
-    ]
+    aboutme:''
+    // act :[
+    //     {id:'1', value:'Grocery Shopping', isChecked: true},
+    //     {id:'2', value:'Going For A Walk', isChecked: false},
+    //     {id:'3', value:'Writing Letters', isChecked: false},
+    //     {id:'4', value:'Pharmacy Runs', isChecked: false},
+    //     {id:'5', value:'Walk Your Pet', isChecked: false},
+    //     {id:'6', value:'Help With Tech', isChecked: false},
+    //     {id:'7', value:'Weekly Phone', isChecked: false},
+    //     {id:'8', value:'Gardening', isChecked: false}
+    // ]
 };
 
 //cb1: false, cb2: false, cb3: false, cb4: false, cb5: false, cb6: false, cb7: false, cb8: false
@@ -40,25 +42,25 @@ export default class Signin extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        console.log('submit!', this.state);
+        //console.log('submit!', this.state);
+        this.newUser();
         this.setState(INIT_STATE);
     }
 
 
     newUser() {
-    fetch("/", {
+        //console.log(this.state);
+    fetch("/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ text: this.state(INIT_STATE) })
+        body: JSON.stringify(this.state)
       })
-        .then(res => res.json())
-        .then(items => {
-          this.setState({ input: items });
-        })
+        .then(res => {console.log(res)})
+        //.then(res => res.json())
         .catch(error => {
-          console.log(error);
+          console.log('error');
         });
     }
 
@@ -93,7 +95,8 @@ export default class Signin extends Component {
                             value={this.state.name}
                             onChange={this.onChange}
                             />
-                            {/* <label className="FormField__Label" htmlFor="surname">Surname</label>
+                            <br/><br/><br/>
+                            <label className="FormField__Label" htmlFor="surname">Surname</label>
                             <input 
                             type="text" 
                             id="surname" 
@@ -102,7 +105,7 @@ export default class Signin extends Component {
                             name="surname"
                             value={this.state.surname}
                             onChange={this.onChange}
-                            /> */}
+                            />
                             {/* </div> */}
                         </div>
                         <div className="FormField">
@@ -114,6 +117,17 @@ export default class Signin extends Component {
                             placeholder="Enter your email"
                             name="email"
                             value={this.state.email}
+                            onChange={this.onChange}/>
+                        </div>
+                        <div className="FormField">
+                            <label className="FormField__Label" htmlFor="city">City</label>
+                            <input 
+                            type="city"
+                            id="city"
+                            className="FormField__Input"
+                            placeholder="Where do you live?"
+                            name="city"
+                            value={this.state.city}
                             onChange={this.onChange}/>
                         </div>
                         <div className="FormField">
@@ -131,7 +145,7 @@ export default class Signin extends Component {
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="activity">What i can help with:</label>
                         <br/>
-                        <div className="Act__Checkboxes">
+                        {/* <div className="Act__Checkboxes">
                             <div>
                             <input 
                             type="checkbox" 
@@ -228,7 +242,7 @@ export default class Signin extends Component {
                             onChange={this.onChange}/>
                             <label className="Act__Label">Walking Your Pet</label>
                             </div>
-                        </div>
+                        </div> */}
                         </div>
                         <br/>
 
