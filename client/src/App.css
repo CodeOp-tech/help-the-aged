@@ -39,6 +39,10 @@
   overflow: auto;
 }
 
+.BM__div{
+  padding-left: 33%;
+}
+
 .Browse__Map{
   background-color: #2c432d;
   color: white;

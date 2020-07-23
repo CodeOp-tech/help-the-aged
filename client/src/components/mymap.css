@@ -99,3 +99,7 @@ input[type="submit"] {
   cursor: pointer;
   font-weight: bold;
 }
+
+.Filter__Button{
+  padding-left: 18%;
+}

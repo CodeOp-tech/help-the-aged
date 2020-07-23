@@ -30,9 +30,11 @@ export default class App extends Component {
                 path="/"
                 component={Description}
               ></Route>
-              
+
               <NavLink to="/secondpage">
-                <button className="Browse__Map">Find Helpers Near You</button>
+                <div className="BM__div">
+                  <button className="Browse__Map">Find Helpers Near You</button>
+                </div>
               </NavLink>
               <Route
                 className="Map__Page"

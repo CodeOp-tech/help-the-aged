@@ -178,7 +178,7 @@ export default class Mymap extends Component {
           </Map>
           <br></br>
 
-          <div>
+          <div className="Filter__Button">
             <label for="activity">Select Helper Based On Activity</label>
             <select
               id="activity"
