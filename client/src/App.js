@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Signin from "./components/signin";
-import Signup from "./components/signup";
+//import Signup from "./components/signup";
 import Description from "./components/description";
 import Helperdetails from "./components/helperdetails.js";
 import Mymap from "./components/mymap";
@@ -30,6 +30,7 @@ export default class App extends Component {
                 path="/"
                 component={Description}
               ></Route>
+              
               <NavLink to="/secondpage">
                 <button className="Browse__Map">Find Helpers Near You</button>
               </NavLink>
