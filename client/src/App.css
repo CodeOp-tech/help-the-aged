@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   color: white;
 }
@@ -7,6 +7,10 @@
 .hhlogo{
   padding-top: 30px;
   padding-left: 30px;
+}
+
+.desc{
+  padding-left: 10%;
 }
 
 .App__Aside {

@@ -5,10 +5,8 @@ import opencage from "opencage-api-client";
 import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import ReactMapboxGl from "react-mapbox-gl";
 import Logo from "../hhlogoreviewbold.png";
-
-const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY; //NOT WORKING!!
+const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY; 
 // const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
-
 export default class Mymap extends Component {
   constructor(props) {
     super(props);
@@ -19,15 +17,14 @@ export default class Mymap extends Component {
       helpers: [],
       markers: [],
       helperWithActivity: [],
-      filteredHelpers: [], //NEW
-      checkedActivity: [], //NEW
+      filteredHelpers: [], 
+      checkedActivity: [], 
     };
   }
-  componentDidMount() {
+    componentDidMount() {
     this.getHelper();
     this.getActivity();
   }
-
   getHelper = () => {
     fetch(`/users/helper_sign_up`)
       .then((response) => response.json())
@@ -46,7 +43,6 @@ export default class Mymap extends Component {
         }
       });
   };
-
   getActivity = () => {
     fetch(`/users/helperSignUp-with-activity`)
       .then((response) => response.json())
@@ -61,37 +57,7 @@ export default class Mymap extends Component {
         }
       });
   };
-
-  //FILTER - NEW - DO I NEED THIS?
-  // getFilteredHelpers= () => {
-  //   fetch(`/users/filter/:activity_id`)
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       this.setState({filteredHelpers: response});
-  //       for (let i=0; i<this.state.filteredHelpers.length; i++) {
-  //         const FilteredList =`${this.state.filteredHelpers[i].postcode}, ${this.state.filteredHelpers[i].city}`;
-  //         console.log(this.state.helperWithActivity[i]);
-  //       }
-  //     });
-  // }
-
-  //NEW - FILTER - I MAP ALREADY HhelperWithACtivity SO NO OTHER FETCH REQUEST??
-  // filteredMembers =  () =>{
-  //   for(let i=0; i<this.state.helperWithActivity.length; i++) {
-  //     if(this.state.helperWithActivity.activities[i] === true){  //TP ADD WHAT PART OF THE ARRAY TO REACH helperWithActivity.activities.map(e => e.activity_name)
-  //       this.setState.filteredHelpers.push(i+1)       //CHANGED TO SETSTATE
-  //       console.log(this.state.filteredHelpers[i]);
-  //       }}}
-
-  // filteredMembers = () =>
-  //   this.state.helperWithActivity.filter(
-  //     (member) =>
-  //       member.activities.findIndex(
-  //         (activity) => activity.id === this.state.helperWithActivity[member].id
-  //       ) > -1
-  //     )
-
-  // then declare it here, parameters are not passed magically
+// then declare it here, parameters are not passed magically
   filteredMembers = (filterValue) => {
     if (filterValue) {
       const filteredHelpers = this.state.helperWithActivity.filter(
@@ -107,11 +73,9 @@ export default class Mymap extends Component {
       this.setState({ filteredHelpers: this.state.helperWithActivity }); //NO VALUE TO FILTER, ALL IN
     }
   };
-
   handleDropdown(e) {
     this.filteredMembers(e.target.value);
   }
-
   addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {
     //To add what I want to show
     console.log(process.env.REACT_APP_OCD_API_KEY);
@@ -142,8 +106,6 @@ export default class Mymap extends Component {
         console.log("error", error.message);
       });
   };
-
-  // ref="secondpage"      ref="map"
   render() {
     return (
       <div>
@@ -177,15 +139,13 @@ export default class Mymap extends Component {
             </div>
           </Map>
           <br></br>
-
           <div className="Filter__Button">
-            <label for="activity">Select Helper Based On Activity</label>
             <select
               id="activity"
               name="Activity"
               onChange={this.handleDropdown.bind(this)}
             >
-              <option value="">All</option>
+              <option value="">Select Helper By Category</option>
               <option value="1">Grocery Shopping</option>
               <option value="2">Go For A Walk</option>
               <option value="3">Writing Letters</option>
@@ -195,16 +155,12 @@ export default class Mymap extends Component {
               <option value="7">Weekly Phone Call</option>
               <option value="8">Gardening</option>
             </select>
-            {/* <input type="submit" value="Submit"/> */}
           </div>
-
-          <NavLink className="BackButton" to="/">
-            <button className="Browse__Map">Back to Main Page</button>
+          <NavLink className="Back_HP" to="/">
+            <button className="Back__HP">Back to Main Page</button>
           </NavLink>
         </div>
-
         {/* <input type="checkbox" onClick={(e) => this.handleClick(e)} id={helperWithActivity.id} name={helperWithActivity.activity}/>   */}
-
         <div className="split right">
           <h5>Find Out Who Can Offer You Help</h5>
           <ul>

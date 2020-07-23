@@ -1,19 +1,7 @@
-/* .NiceMap {
-    display:flex;
-    padding-left: 20px;
-    }
-    
-    .leaflet-container{
-    display: flex;
-    Width: 70%;
-    height: 70vh;
-    justify-items: left;
-    } */
-
 .leaflet-container {
   /* display: flex; */
   width: 90%;
-  height: 70vh;
+  height: 60vh;
   /* padding: 20%; */
   /* justify-items: center; */
 }
@@ -102,4 +90,40 @@ input[type="submit"] {
 
 .Filter__Button{
   padding-left: 18%;
+}
+
+.Select__Button{
+  color: #ffede2;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #2c432d;
+  padding-bottom: 5px;
+  font-size: .8em;
+  background-color: transparent;
+  border: none;
+  padding-left: 35%;
+}
+
+.Select__Button__Text{
+  color: #ffede2;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #2c432d;
+  padding-bottom: 5px;
+  font-size: .8em;
+  background-color: transparent;
+  border: none;
+  padding-left: 30%;
+}
+
+.Back__HP{
+  color: #ffede2;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #2c432d;
+  padding-bottom: 5px;
+  font-size: .8em;
+  background-color: transparent;
+  border: none;
+  padding-left: 38%;
 }
