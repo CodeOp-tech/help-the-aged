@@ -9,6 +9,7 @@ import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
 
+
 export default class App extends Component {
   render() {
     return (

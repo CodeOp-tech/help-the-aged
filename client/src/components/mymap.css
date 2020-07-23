@@ -40,10 +40,12 @@ ul {
   justify-content: space-evenly;
 }
 
+
+/*#737373  - grey*/
 .flex-container {
   display: flex;
-  background-color: #dcccc0;
-  color: #4c5d72;
+  background-color: #e0ba9d;    
+  /* color: #2f516c; */
   justify-content: space-evenly;
   flex-wrap: wrap;
   line-height: 80%;
@@ -52,12 +54,55 @@ ul {
   margin: 10px;
   align-items: center;
   width: 200px;
-  border-radius: 5%;
+  border-radius: 15%;
 }
+
+.flip-card {
+  width: 300px;
+  height: 150px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #ffede2;
+  color:#4c5d72;
+  line-height: normal;
+}
+
+.flip-card-back {
+  background-color: #ffede2;
+  color:#4c5d72;
+  transform: rotateY(180deg);
+}
+
+
 
 h5 {
   text-align: center;
-  font-size: 24px;
+  font-size: 36px;
+  font-family: 'Dancing Script', cursive;
 }
 
 input[type="text"],

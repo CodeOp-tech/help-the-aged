@@ -228,10 +228,10 @@ export default class Signup extends Component {
                   type="checkbox"
                   name="hasAgreed"
                 />
-                I agree to all
-                <a href="" className="FormField__TermsLink">
+                I agree to all terms and conditions.
+                {/* <a href="" className="FormField__TermsLink">
                   terms and conditions.{" "}
-                </a>
+                </a> */}
               </label>
             </div>
             <div className="FormField">
