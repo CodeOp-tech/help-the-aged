@@ -230,6 +230,8 @@ router.post("/", async (req, res) => {
   res.send({ msg: "Helper saved with activities!" });
 });
 
+
+
 //TO DELETE HELPER PROFILE
 router.delete("/helper_sign_up/:id", function (req, res) {
   if (!Number.isInteger(parseInt(req.params.id))) {
