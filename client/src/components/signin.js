@@ -112,37 +112,36 @@ export default class Signin extends Component {
         <br />
         <div className="FormCenter">
           <form className="FormFields" onSubmit={this.onSubmit}>
+            {/* <div className="FormField"> */}
+      
             <div className="FormField">
-              {/* <div className="Names__Inputs"> */}
-              <label className="FormField__Label" htmlFor="name">
+              <label className="FormField__Label" htmlFor="email">
                 Name
               </label>
               <input
-                type="text"
+                type="name"
                 id="name"
                 className="FormField__Input"
-                placeholder="Enter your name"
+                placeholder="What's your name?"
                 name="name"
                 value={this.state.name}
                 onChange={this.onChange}
               />
-              <br />
-              <br />
-              <br />
-              <label className="FormField__Label" htmlFor="surname">
+            </div>
+            <div className="FormField">
+              <label className="FormField__Label" htmlFor="email">
                 Surname
               </label>
               <input
-                type="text"
+                type="surname"
                 id="surname"
                 className="FormField__Input"
-                placeholder="Enter your surname"
+                placeholder="What's your surname?"
                 name="surname"
                 value={this.state.surname}
                 onChange={this.onChange}
-              />
-              {/* </div> */}
-            </div>
+              /> 
+            </div>           
             <div className="FormField">
               <label className="FormField__Label" htmlFor="email">
                 Email
@@ -179,7 +178,7 @@ export default class Signin extends Component {
                 type="postcode"
                 id="postcode"
                 className="FormField__Input"
-                placeholder="Enter your postcode"
+                placeholder="What's your postcode?"
                 name="postcode"
                 value={this.state.postcode}
                 onChange={this.onChange}
@@ -206,7 +205,7 @@ export default class Signin extends Component {
                   </div>
                 ))}
               </div>
-
+              <div className="OLD CB">
               {/* <div className="Act__Checkboxes">
                 <div>
                   <input
@@ -329,6 +328,7 @@ export default class Signin extends Component {
                 value={this.state.aboutme}
                 onChange={this.onChange}
               />
+            </div>
             </div>
 
             <div className="FormField">
