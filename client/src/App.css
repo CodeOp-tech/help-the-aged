@@ -43,10 +43,10 @@
   padding: 25px 25px;
   overflow: auto;
 }
-/* 
+
 .Icons__HP{
-  padding-left: -2%;
-} */
+  padding-left: 5%;
+}
 
 .BM__div{
   padding-left: 33%;
@@ -61,7 +61,7 @@
   border-bottom-right-radius: 25px;
   display: flex;
   justify-content: flex-end;
-  /* margin-bottom: 10%; */
+  margin-bottom: 10%;
   background-color: #ffede2;
   color: #4C5D72;
   padding: 10px 25px;
