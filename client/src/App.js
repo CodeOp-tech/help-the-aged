@@ -53,7 +53,6 @@ export default class App extends Component {
                 path="/"
                 component={Helperdetails}
               ></Route>
-                            <Route exact path="/" component={Signin}></Route>
               <Route
                 className="signin"
                 exact
