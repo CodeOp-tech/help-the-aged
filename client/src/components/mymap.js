@@ -6,8 +6,10 @@ import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import ReactMapboxGl from "react-mapbox-gl";
 import Logo from "../hhlogoreviewbold.png";
 import Hands from '../hands.png';
+
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY; 
 // const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
+
 export default class Mymap extends Component {
   constructor(props) {
     super(props);
@@ -77,36 +79,36 @@ export default class Mymap extends Component {
   handleDropdown(e) {
     this.filteredMembers(e.target.value);
   }
-  addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {
-    //To add what I want to show
-    console.log(process.env.REACT_APP_OCD_API_KEY);
-    opencage
-      .geocode({ q: helperLocation, key: OCD_API_KEY })
-      .then((data) => {
-        console.log(data);
-        if (data.results.length > 0) {
-          console.log("Found: " + data.results[0].formatted);
-          const latlng = data.results[0].geometry;
-          const { markers } = this.state; //creating the array with lat, lon
-          let markerObject = {
-            location: latlng,
-            name: helperName, //To add what I want to show and to pass as an arg to addLocation
-            surname: helperSurname,
-            about_me: helperAbout_me,
-          };
-          markers.push(markerObject);
-          this.setState({
-            markers: markers,
-          });
-          console.log(this.state.markers);
-          let mapInst = this.refs.map.leafletElement; //in render in ref
-          mapInst.flyTo(latlng, 12);
-        } else alert("No results found!!");
-      })
-      .catch((error) => {
-        console.log("error", error.message);
-      });
-  };
+  // addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {
+  //   //To add what I want to show
+  //   console.log(process.env.REACT_APP_OCD_API_KEY);
+  //   opencage
+  //     .geocode({ q: helperLocation, key: OCD_API_KEY })
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.results.length > 0) {
+  //         console.log("Found: " + data.results[0].formatted);
+  //         const latlng = data.results[0].geometry;
+  //         const { markers } = this.state; //creating the array with lat, lon
+  //         let markerObject = {
+  //           location: latlng,
+  //           name: helperName, //To add what I want to show and to pass as an arg to addLocation
+  //           surname: helperSurname,
+  //           about_me: helperAbout_me,
+  //         };
+  //         markers.push(markerObject);
+  //         this.setState({
+  //           markers: markers,
+  //         });
+  //         console.log(this.state.markers);
+  //         let mapInst = this.refs.map.leafletElement; //in render in ref
+  //         mapInst.flyTo(latlng, 12);
+  //       } else alert("No results found!!");
+  //     })
+  //     .catch((error) => {
+  //       console.log("error", error.message);
+  //     });
+  // };
   render() {
     return (
       <div>

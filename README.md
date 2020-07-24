@@ -1,39 +1,35 @@
 # Help The Aged
-
 ## Introduction
-
-Create an app for elderly / care homes to find local volunteer help
-
-Ideally, we would like an interactive map where you can browse people needing help / people offering help locally.
-
-We will focus on creating the user experience for people offering their help.
-
-## Steps & Functionalities
-
+FS app.
+The project is to make the link between Old People who need support with errands or companionship with local volunteers.
+## How does it work?
 - Database
-Create a database with entries from Helper's profile (needs to include Postcode + task interested in)
-
+Many to many DB with 3 tables: Helper Sign Up, Activity & Joining Table with activity numbers and user numbers
 - Homepage
-Present what the project is and how it works
-Includes a carousel with pictures of different services Helpers can offer
-Includes a form to join and post an ad as a local helper that will render on the map
-
+HP where the user can sign up to offer to help old people in theire area
 - Map
-Create a map to render a marker on every postcode for which a Helper has posted their profile.
-When clicking on the marker, it should render the usernam + what they would like to help with + their contact details.
-The map needs to use geoip in order to render in the area of the user when they arrive on site.
-
-<!-- Should we focus solely on London for now ? -->
-
+It renders a marker on every postcode for which a Helper has posted their profile + a description card.
 - Map Filter
-Create a filter so that people in need of help can see markers in their area only for tasks they are interested in
-
+You can filter the Helpers by activities
 ## Technologies
-
 React.js
 Node.js
 Express
 mySQL
 Datagrid
-
 ## Set up
+- Node.js environement set up
+- MySQL database: 'npm run migrate' in your command line to migrate database.js
+- Create .env in main repository with the following:
+DB_HOST=
+DB_USER=
+DB_NAME=
+DB_PASS=
+- Router: npm install --save react-router-dom
+
+## API Routes (3 pages)
+## DB schema
+## User Flow Diagram
+
+## Notes
+_This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
