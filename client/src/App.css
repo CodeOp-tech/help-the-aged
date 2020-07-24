@@ -13,6 +13,7 @@
   padding-left: 10%;
 }
 
+
 .App__Aside {
   width: 50%;
   background-color: #2c432d;
@@ -42,6 +43,10 @@
   padding: 25px 25px;
   overflow: auto;
 }
+/* 
+.Icons__HP{
+  padding-left: -2%;
+} */
 
 .BM__div{
   padding-left: 33%;
@@ -141,7 +146,7 @@
 
 .FormField__Label {
   display: block;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: .8em;
   color: #2c432d;
 }

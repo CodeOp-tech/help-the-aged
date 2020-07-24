@@ -120,7 +120,7 @@ export default class Mymap extends Component {
             <div className="mapPositioning">
               <TileLayer
                 url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
-                attribution='<a href="https://www.mapbox.com/about/maps/">Mapbox | </a> <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution='<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               <ReactMapboxGl />
               {this.state.markers.map((
@@ -141,6 +141,7 @@ export default class Mymap extends Component {
           <br></br>
           <div className="Filter__Button">
             <select
+              className="Filter__Button__Text"
               id="activity"
               name="Activity"
               onChange={this.handleDropdown.bind(this)}

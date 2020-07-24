@@ -105,16 +105,14 @@ export default class Signup extends Component {
         >
           Sign Up
         </NavLink>
-        <br />
-        <br />
-        <br />
+        <br/><br/>
         <div className="FormCenter">
           <form className="FormFields" onSubmit={this.onSubmit}>
             {/* <div className="FormField"> */}
       
             <div className="FormField">
               <label className="FormField__Label" htmlFor="email">
-                Name
+                {/* Name */}
               </label>
               <input
                 type="name"
@@ -128,7 +126,7 @@ export default class Signup extends Component {
             </div>
             <div className="FormField">
               <label className="FormField__Label" htmlFor="email">
-                Surname
+                {/* Surname */}
               </label>
               <input
                 type="surname"
@@ -142,7 +140,7 @@ export default class Signup extends Component {
             </div>           
             <div className="FormField">
               <label className="FormField__Label" htmlFor="email">
-                Email
+                {/* Email */}
               </label>
               <input
                 type="email"
@@ -156,7 +154,7 @@ export default class Signup extends Component {
             </div>
             <div className="FormField">
               <label className="FormField__Label" htmlFor="city">
-                City
+                {/* City */}
               </label>
               <input
                 type="city"
@@ -170,7 +168,7 @@ export default class Signup extends Component {
             </div>
             <div className="FormField">
               <label className="FormField__Label" htmlFor="postcode">
-                Postcode
+                {/* Postcode */}
               </label>
               <input
                 type="postcode"
@@ -207,7 +205,7 @@ export default class Signup extends Component {
 
             <div className="FormField">
               <label className="FormField__Label" htmlFor="about_me">
-                About me
+                {/* About me */}
               </label>
               <textarea
                 type="about_me"

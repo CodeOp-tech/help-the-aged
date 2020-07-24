@@ -8,6 +8,7 @@ import Logo from "./hhlogoreviewbold.png";
 import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
+import ICONS1 from './ICONS1.png';
 
 export default class App extends Component {
   render() {
@@ -41,6 +42,10 @@ export default class App extends Component {
                 path="/secondpage"
                 component={Mymap}
               ></Route>
+              <div className="Icons__HP">
+                <br/><br/>
+                <img src={ICONS1} classname="Desc__HH" height="125"/>
+              </div>
             </div>
 
             <div className="App__Form">
