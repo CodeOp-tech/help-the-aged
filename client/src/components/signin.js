@@ -11,7 +11,7 @@ export default class Signin extends Component {
     render() {
         return (
             <div>
-                <img src="https://i.chzbgr.com/full/9443412224/h24A970BA/halp-plz"></img>
+                {/* <img src="https://i.chzbgr.com/full/9443412224/h24A970BA/halp-plz"></img> */}
             </div>
         )
     }
