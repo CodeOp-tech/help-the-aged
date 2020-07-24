@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import Signup from "./components/signup";
 import Signin from "./components/signin";
-//import Signup from "./components/signup";
 import Description from "./components/description";
 import Helperdetails from "./components/helperdetails.js";
 import Mymap from "./components/mymap";
@@ -8,6 +8,7 @@ import Logo from "./hhlogoreviewbold.png";
 import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
+
 
 export default class App extends Component {
   render() {
@@ -44,7 +45,7 @@ export default class App extends Component {
             </div>
 
             <div className="App__Form">
-              <Route exact path="/" component={Signin}></Route>
+              <Route exact path="/" component={Signup}></Route>
               <Route
                 className="HelperProfiles"
                 exact
