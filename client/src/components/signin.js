@@ -10,12 +10,9 @@ export default class Signin extends Component {
     }
     render() {
         return (
-            // <div className="App__Form">
-                <div className="FormTitle">
-                    {/* <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> */}
-                     {/* or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink> */}
-              </div>
-            // </div>
+            <div>
+                <img src="https://i.chzbgr.com/full/9443412224/h24A970BA/halp-plz"></img>
+            </div>
         )
     }
 }

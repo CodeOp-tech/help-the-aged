@@ -43,10 +43,6 @@ export default class App extends Component {
                 path="/secondpage"
                 component={Mymap}
               ></Route>
-              {/* <div className="Icons__HP">
-                <br/><br/>
-                <img src={MISSION} classname="Desc__HH" height="450"/>
-              </div> */}
             </div>
 
             <div className="App__Form">
@@ -56,6 +52,13 @@ export default class App extends Component {
                 exact
                 path="/"
                 component={Helperdetails}
+              ></Route>
+                            <Route exact path="/" component={Signin}></Route>
+              <Route
+                className="signin"
+                exact
+                path="/sign-in"
+                component={Signin}
               ></Route>
             </div>
           </div>
