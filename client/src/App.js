@@ -9,7 +9,7 @@ import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
 import ICONS1 from './ICONS1.png';
-
+import MISSION from './MISSION.png';
 
 export default class App extends Component {
   render() {
@@ -45,7 +45,7 @@ export default class App extends Component {
               ></Route>
               <div className="Icons__HP">
                 <br/><br/>
-                <img src={ICONS1} classname="Desc__HH" height="125"/>
+                <img src={MISSION} classname="Desc__HH" height="450"/>
               </div>
             </div>
 

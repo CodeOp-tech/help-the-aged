@@ -13,7 +13,6 @@
   padding-left: 10%;
 }
 
-
 .App__Aside {
   width: 50%;
   background-color: #2c432d;
@@ -45,7 +44,7 @@
 }
 
 .Icons__HP{
-  padding-left: 5%;
+  padding-left: 7%;
 }
 
 .BM__div{
@@ -223,3 +222,4 @@
   font-size: 12px;
   color: #646F7D;
 }
+
