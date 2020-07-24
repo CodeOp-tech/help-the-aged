@@ -9,7 +9,7 @@ import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
 import ICONS1 from './ICONS1.png';
-
+// import MISSION from './MISSION.png';
 
 export default class App extends Component {
   render() {
@@ -43,10 +43,6 @@ export default class App extends Component {
                 path="/secondpage"
                 component={Mymap}
               ></Route>
-              <div className="Icons__HP">
-                <br/><br/>
-                <img src={ICONS1} classname="Desc__HH" height="125"/>
-              </div>
             </div>
 
             <div className="App__Form">
@@ -56,6 +52,12 @@ export default class App extends Component {
                 exact
                 path="/"
                 component={Helperdetails}
+              ></Route>
+              <Route
+                className="signin"
+                exact
+                path="/sign-in"
+                component={Signin}
               ></Route>
             </div>
           </div>

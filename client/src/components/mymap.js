@@ -120,7 +120,7 @@ export default class Mymap extends Component {
           <Map center={[this.state.lat, this.state.lon]} zoom={this.state.zoom}>
             <div className="mapPositioning">
               <TileLayer
-                url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
+                url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
                 attribution='<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               <ReactMapboxGl />
