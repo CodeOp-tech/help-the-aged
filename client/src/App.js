@@ -10,6 +10,7 @@ import "./App.css";
 import ReactMapboxGl from "react-mapbox-gl";
 import ICONS1 from './ICONS1.png';
 
+
 export default class App extends Component {
   render() {
     return (
