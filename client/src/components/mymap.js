@@ -23,10 +23,12 @@ export default class Mymap extends Component {
       checkedActivity: [], 
     };
   }
+
     componentDidMount() {
     this.getHelper();
     this.getActivity();
   }
+
   getHelper = () => {
     fetch(`/users/helper_sign_up`)
       .then((response) => response.json())
@@ -45,6 +47,7 @@ export default class Mymap extends Component {
         }
       });
   };
+
   getActivity = () => {
     fetch(`/users/helperSignUp-with-activity`)
       .then((response) => response.json())
@@ -59,6 +62,7 @@ export default class Mymap extends Component {
         }
       });
   };
+
 // then declare it here, parameters are not passed magically
   filteredMembers = (filterValue) => {
     if (filterValue) {
@@ -75,9 +79,13 @@ export default class Mymap extends Component {
       this.setState({ filteredHelpers: this.state.helperWithActivity }); //NO VALUE TO FILTER, ALL IN
     }
   };
+
+
   handleDropdown(e) {
     this.filteredMembers(e.target.value);
   }
+
+
   addLocation = (helperLocation, helperName, helperSurname, helperAbout_me) => {
     //To add what I want to show
     console.log(process.env.REACT_APP_OCD_API_KEY);
@@ -108,6 +116,8 @@ export default class Mymap extends Component {
         console.log("error", error.message);
       });
   };
+
+
   render() {
     return (
       <div>
@@ -164,7 +174,8 @@ export default class Mymap extends Component {
           </NavLink>
         </div>
         {/* <input type="checkbox" onClick={(e) => this.handleClick(e)} id={helperWithActivity.id} name={helperWithActivity.activity}/>   */}
-        <div className="split right">
+        
+         <div className="split right">
           <h5>Find Out Who Can Offer You Help</h5>
           <ul>
             {this.state.filteredHelpers.map((helperWithActivity, id) => {
